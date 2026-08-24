@@ -96,8 +96,6 @@ class SiteConfigAdmin(AutoTranslateAdminMixin, ModelAdmin, TabbedTranslationAdmi
         }),
         (_("Brend ranglari"), {
             "fields": ("brand_primary", "brand_accent"),
-            "description": _("Boʻsh qoldirilsa standart palitra ishlatiladi. Rang tanlansa "
-                             "butun sayt (soyalar, gradientlar, tugmalar) unga moslashadi."),
         }),
         (_("Kontaktlar"), {
             "fields": ("phone_primary", "phone_secondary", "email", "address", "working_hours"),
