@@ -50,3 +50,6 @@ _scratch/
 
 # ---- Real student data — MUST NOT enter the repo ----
 cefr_urls.txt
+
+# AI assistant notes — local only, not for the repo
+CLAUDE.md
