@@ -19,15 +19,15 @@
 <section class="py-12 lg:py-16 bg-base">
   <div class="mx-auto max-w-6xl px-4 lg:px-8">
     <div class="text-center max-w-2xl mx-auto mb-10">
-      <span class="text-[12.5px] font-bold uppercase tracking-[0.18em] text-brand-blue-600 dark:text-brand-blue-300">{% translate "Natijalar" %}</span>
+      <span class="text-[12.5px] font-bold uppercase tracking-[0.18em] text-brand-violet-600 dark:text-brand-violet-300">{% translate "Natijalar" %}</span>
       <h1 class="mt-2 font-display font-extrabold tracking-tight text-[clamp(1.9rem,4vw,2.8rem)]">{% translate "Oʻquvchilarimiz sertifikatlari" %}</h1>
     </div>
     {% if years %}
     <div class="flex items-center justify-center flex-wrap gap-x-1.5 gap-y-3 mb-10">
-      <a href="{% url 'certificates:list' %}" class="rounded-pill px-4 py-2 text-[13px] font-semibold transition {% if not selected_year %}bg-brand-blue-600 text-white{% else %}border bd surface-card{% endif %}">{% translate "Barchasi" %}</a>
+      <a href="{% url 'certificates:list' %}" class="rounded-pill px-4 py-2 text-[13px] font-semibold transition {% if not selected_year %}bg-brand-violet-600 text-white{% else %}border bd surface-card{% endif %}">{% translate "Barchasi" %}</a>
       {% for y in years %}
       <span class="h-px w-4 bg-neutral-300 dark:bg-neutral-700" aria-hidden="true"></span>
-      <a href="?year={{ y.year }}" class="rounded-pill px-4 py-2 text-[13px] font-semibold transition {% if selected_year == y.year|stringformat:'s' %}bg-brand-blue-600 text-white{% else %}border bd surface-card{% endif %}">{{ y.year }} <span class="opacity-70">({{ y.count }})</span></a>
+      <a href="?year={{ y.year }}" class="rounded-pill px-4 py-2 text-[13px] font-semibold transition {% if selected_year == y.year|stringformat:'s' %}bg-brand-violet-600 text-white{% else %}border bd surface-card{% endif %}">{{ y.year }} <span class="opacity-70">({{ y.count }})</span></a>
       {% endfor %}
     </div>
     {% endif %}
@@ -47,7 +47,7 @@
         {# Certificates are portrait (A4) — object-contain shows the whole document, name + level included, instead of cropping it. #}
         <div class="relative aspect-[5/7] overflow-hidden bg-neutral-100 dark:bg-neutral-800">
           {% responsive_img c.image alt=c.title css="h-full w-full object-contain transition duration-500 group-hover:scale-[1.03]" width=480 width_2x=900 sizes="(min-width:1024px) 18vw, (min-width:640px) 24vw, 32vw" %}
-          {% if c.badge %}<span class="absolute top-3 left-3 rounded-pill bg-white/90 dark:bg-black/45 backdrop-blur px-2.5 py-1 text-[11px] font-bold {% if c.badge_accent %}text-brand-red-600 dark:text-brand-red-300{% else %}text-brand-blue-700 dark:text-brand-blue-300{% endif %}">{{ c.badge }}</span>{% endif %}
+          {% if c.badge %}<span class="absolute top-3 left-3 rounded-pill bg-white/90 dark:bg-black/45 backdrop-blur px-2.5 py-1 text-[11px] font-bold {% if c.badge_accent %}text-brand-gold-700 dark:text-brand-gold-300{% else %}text-brand-violet-700 dark:text-brand-violet-300{% endif %}">{{ c.badge }}</span>{% endif %}
         </div>
         <div class="p-4"><p class="font-display font-bold text-[14px]">{{ c.student_name|default:c.title }}</p>{% if c.description %}<p class="text-[12px] txt-soft">{{ c.description }}</p>{% endif %}</div>
       </button>
@@ -66,7 +66,7 @@
     {% if is_paginated %}
     <div class="mt-10 flex justify-center gap-2 text-[14px] font-semibold">
       {% if page_obj.has_previous %}<a href="?page={{ page_obj.previous_page_number }}{% if selected_year %}&year={{ selected_year }}{% endif %}" class="rounded-pill border bd surface-card px-4 py-2">←</a>{% endif %}
-      <span class="rounded-pill bg-brand-blue-600 text-white px-4 py-2">{{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span>
+      <span class="rounded-pill bg-brand-violet-600 text-white px-4 py-2">{{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span>
       {% if page_obj.has_next %}<a href="?page={{ page_obj.next_page_number }}{% if selected_year %}&year={{ selected_year }}{% endif %}" class="rounded-pill border bd surface-card px-4 py-2">→</a>{% endif %}
     </div>
     {% endif %}

@@ -1,18 +1,18 @@
-"""Gunicorn configuration for Hope School (production).
+"""Gunicorn configuration for Tagayev Methods (production).
 
 Loaded by the systemd unit:
     gunicorn --config deploy/gunicorn.conf.py config.wsgi:application
 
 Access/error logs go to stdout/stderr, which systemd captures in the journal
-(``journalctl -u hopeschool``). Tune workers via the GUNICORN_WORKERS env var —
+(``journalctl -u tagayev``). Tune workers via the GUNICORN_WORKERS env var —
 the SQLite backend prefers a small pool to avoid write contention, so the
 default is intentionally modest rather than the (2*CPU)+1 rule of thumb.
 """
 import os
 
-# Bind to a unix socket in the systemd RuntimeDirectory (/run/hopeschool).
-# nginx (www-data) reads it; see hopeschool.service Group=www-data + umask below.
-bind = os.environ.get("GUNICORN_BIND", "unix:/run/hopeschool/gunicorn.sock")
+# Bind to a unix socket in the systemd RuntimeDirectory (/run/tagayev).
+# nginx (www-data) reads it; see tagayev.service Group=www-data + umask below.
+bind = os.environ.get("GUNICORN_BIND", "unix:/run/tagayev/gunicorn.sock")
 
 workers = int(os.environ.get("GUNICORN_WORKERS", "3"))
 worker_class = "sync"
@@ -40,4 +40,4 @@ accesslog = "-"
 errorlog = "-"
 loglevel = os.environ.get("GUNICORN_LOGLEVEL", "info")
 
-proc_name = "hopeschool"
+proc_name = "tagayev"

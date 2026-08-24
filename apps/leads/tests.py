@@ -100,8 +100,8 @@ class LeadSourceModelTests(TestCase):
     def test_build_link_uses_lang_and_slug(self):
         src = LeadSource.resolve("instagram")
         self.assertEqual(
-            src.build_link("hopeschool.uz", "ru"),
-            "https://hopeschool.uz/ru/?source=instagram#contact",
+            src.build_link("tagayev.uz", "ru"),
+            "https://tagayev.uz/ru/?source=instagram#contact",
         )
 
     def test_source_query_param_seeds_hidden_field(self):
@@ -316,20 +316,20 @@ class LeadCreateViewTests(TestCase):
         self.assertEqual(Lead.objects.count(), 5)
 
     # --- Origin check (cross-site spam via fetch/XHR) ---
-    @override_settings(ALLOWED_HOSTS=["hopeschool.uz"])
+    @override_settings(ALLOWED_HOSTS=["tagayev.uz"])
     def test_matching_origin_is_accepted(self):
         # SERVER_NAME matches ALLOWED_HOSTS so the Host header itself validates
         # — this test is about the separate Origin check, not Django's host guard.
-        client = Client(SERVER_NAME="hopeschool.uz")
+        client = Client(SERVER_NAME="tagayev.uz")
         response = client.post(
-            LEAD_URL, self._valid_data, HTTP_ORIGIN="https://hopeschool.uz"
+            LEAD_URL, self._valid_data, HTTP_ORIGIN="https://tagayev.uz"
         )
         self.assertEqual(response.status_code, 200)
         self.assertTrue(json.loads(response.content)["ok"])
 
-    @override_settings(ALLOWED_HOSTS=["hopeschool.uz"])
+    @override_settings(ALLOWED_HOSTS=["tagayev.uz"])
     def test_foreign_origin_is_rejected(self):
-        client = Client(SERVER_NAME="hopeschool.uz")
+        client = Client(SERVER_NAME="tagayev.uz")
         response = client.post(
             LEAD_URL, self._valid_data, HTTP_ORIGIN="https://evil.example"
         )

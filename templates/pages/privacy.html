@@ -2,7 +2,7 @@
 {% load i18n ui %}
 
 {% block title %}{% translate "Maxfiylik siyosati" %} — {{ site_config.site_name }}{% endblock %}
-{% block meta_description %}{% translate "Hope School maxfiylik siyosati: qanday maʼlumotlar yigʻiladi va qanday ishlatiladi." %}{% endblock %}
+{% block meta_description %}{% translate "Tagayev Methods maxfiylik siyosati: qanday maʼlumotlar yigʻiladi va qanday ishlatiladi." %}{% endblock %}
 
 {% block content %}
 <section class="mx-auto max-w-3xl px-4 lg:px-8 py-16">
@@ -56,8 +56,8 @@
     <div>
       <h2 class="font-display font-bold text-xl mb-2">{% translate "Bogʻlanish" %}</h2>
       <ul class="space-y-1">
-        {% if site_config.phone_primary %}<li>{% translate "Telefon" %}: <a href="tel:{{ site_config.phone_primary }}" class="text-brand-blue-600">{{ site_config.phone_primary|phone_display }}</a></li>{% endif %}
-        {% if site_config.email %}<li>Email: <a href="mailto:{{ site_config.email }}" class="text-brand-blue-600">{{ site_config.email }}</a></li>{% endif %}
+        {% if site_config.phone_primary %}<li>{% translate "Telefon" %}: <a href="tel:{{ site_config.phone_primary }}" class="text-brand-violet-600">{{ site_config.phone_primary|phone_display }}</a></li>{% endif %}
+        {% if site_config.email %}<li>Email: <a href="mailto:{{ site_config.email }}" class="text-brand-violet-600">{{ site_config.email }}</a></li>{% endif %}
         {% if site_config.address %}<li>{% translate "Manzil" %}: {{ site_config.address }}</li>{% endif %}
       </ul>
     </div>

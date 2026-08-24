@@ -36,7 +36,7 @@ CLDR_URL = ("https://raw.githubusercontent.com/unicode-org/cldr-json/main/"
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEST = os.path.join(BASE, "static", "js", "world_map.js")
-CACHE = os.path.join(tempfile.gettempdir(), "hopeschool-mapdata")
+CACHE = os.path.join(tempfile.gettempdir(), "tagayev-mapdata")
 
 W = 1000.0
 K = W / (2 * math.pi)          # radians -> px

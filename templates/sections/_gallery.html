@@ -4,10 +4,10 @@
   <div class="mx-auto max-w-6xl px-4 lg:px-8">
     <div class="sr flex items-end justify-between gap-4 mb-9">
       <div class="text-center sm:text-left mx-auto sm:mx-0">
-        <span class="text-[12.5px] font-bold uppercase tracking-[0.18em] text-brand-blue-600 dark:text-brand-blue-300">{% translate "Galereya" %}</span>
+        <span class="text-[12.5px] font-bold uppercase tracking-[0.18em] text-brand-violet-600 dark:text-brand-violet-300">{% translate "Galereya" %}</span>
         <h2 class="mt-2 font-display font-extrabold tracking-tight text-[clamp(1.7rem,3.4vw,2.5rem)] leading-tight">{% translate "Oʻquv jarayonimizdan lavhalar" %}</h2>
       </div>
-      <a href="{% url 'gallery:list' %}" class="hidden sm:inline-flex items-center gap-2 rounded-pill border bd surface-card px-5 py-2.5 text-[14px] font-semibold text-brand-blue-700 dark:text-brand-blue-300 self-start">{% translate "Barchasi" %} →</a>
+      <a href="{% url 'gallery:list' %}" class="hidden sm:inline-flex items-center gap-2 rounded-pill border bd surface-card px-5 py-2.5 text-[14px] font-semibold text-brand-violet-700 dark:text-brand-violet-300 self-start">{% translate "Barchasi" %} →</a>
     </div>
     <div data-carousel="gallery" data-interval="2800" class="flex gap-4 overflow-x-auto snap-x snap-mandatory no-scrollbar pb-1">
       {% for img in gallery_images %}

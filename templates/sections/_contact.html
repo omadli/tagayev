@@ -5,7 +5,7 @@
   <div class="absolute inset-0 dot-grid opacity-50 [mask-image:radial-gradient(circle_at_80%_10%,#000,transparent_65%)]"></div>
   <div class="relative mx-auto max-w-6xl px-4 lg:px-8">
     <div class="sr max-w-2xl mb-8">
-      <span class="text-[12.5px] font-bold uppercase tracking-[0.18em] text-brand-blue-600 dark:text-brand-blue-300">{{ site_copy.contact_eyebrow }}</span>
+      <span class="text-[12.5px] font-bold uppercase tracking-[0.18em] text-brand-violet-600 dark:text-brand-violet-300">{{ site_copy.contact_eyebrow }}</span>
       <h2 class="mt-2 font-display font-extrabold tracking-tight text-[clamp(1.8rem,3.6vw,2.6rem)] leading-tight">{{ site_copy.contact_title }}</h2>
       <p class="mt-3 text-[16px] leading-relaxed txt-soft">{{ site_copy.contact_intro }}</p>
     </div>
@@ -18,20 +18,20 @@
           <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
           <input type="hidden" name="source" value="{{ lead_source_qs|default:'site' }}">
           <div class="grid sm:grid-cols-2 gap-3.5">
-            <div><label for="cf_name" class="block text-[13px] font-semibold mb-1.5">{% translate "Ism familiya" %} *</label><input required type="text" name="full_name" id="cf_name" placeholder="{% translate 'Ismingiz' %}" class="w-full rounded-xl border bd bg-alt px-4 py-3 text-[15px] outline-none focus:border-brand-blue-400 focus:ring-4 focus:ring-brand-blue-100 dark:focus:ring-brand-blue-500/20 transition"></div>
-            <div><label for="cf_phone" class="block text-[13px] font-semibold mb-1.5">{% translate "Telefon raqam" %} *</label><input required type="tel" inputmode="tel" name="phone" id="cf_phone" placeholder="+998 __ ___ __ __" class="w-full rounded-xl border bd bg-alt px-4 py-3 text-[15px] outline-none focus:border-brand-blue-400 focus:ring-4 focus:ring-brand-blue-100 dark:focus:ring-brand-blue-500/20 transition"></div>
+            <div><label for="cf_name" class="block text-[13px] font-semibold mb-1.5">{% translate "Ism familiya" %} *</label><input required type="text" name="full_name" id="cf_name" placeholder="{% translate 'Ismingiz' %}" class="w-full rounded-xl border bd bg-alt px-4 py-3 text-[15px] outline-none focus:border-brand-violet-400 focus:ring-4 focus:ring-brand-violet-100 dark:focus:ring-brand-violet-500/20 transition"></div>
+            <div><label for="cf_phone" class="block text-[13px] font-semibold mb-1.5">{% translate "Telefon raqam" %} *</label><input required type="tel" inputmode="tel" name="phone" id="cf_phone" placeholder="+998 __ ___ __ __" class="w-full rounded-xl border bd bg-alt px-4 py-3 text-[15px] outline-none focus:border-brand-violet-400 focus:ring-4 focus:ring-brand-violet-100 dark:focus:ring-brand-violet-500/20 transition"></div>
           </div>
           <div><label for="cf_course" class="block text-[13px] font-semibold mb-1.5">{% translate "Qaysi kurs?" %}</label>
-            <select name="course" id="cf_course" class="w-full rounded-xl border bd bg-alt px-4 py-3 text-[15px] outline-none focus:border-brand-blue-400 focus:ring-4 focus:ring-brand-blue-100 dark:focus:ring-brand-blue-500/20 transition">
+            <select name="course" id="cf_course" class="w-full rounded-xl border bd bg-alt px-4 py-3 text-[15px] outline-none focus:border-brand-violet-400 focus:ring-4 focus:ring-brand-violet-100 dark:focus:ring-brand-violet-500/20 transition">
               <option value="">{% translate "Kursni tanlang (ixtiyoriy)" %}</option>
               {% for c in lead_courses %}<option value="{{ c.id }}">{{ c.name }}</option>{% endfor %}
             </select>
           </div>
           <div><label for="cf_message" class="block text-[13px] font-semibold mb-1.5">{% translate "Qoʻshimcha izoh" %}</label>
-            <textarea name="message" id="cf_message" rows="3" placeholder="{% translate 'Savolingiz yoki qoʻshimcha maʼlumot…' %}" class="w-full rounded-xl border bd bg-alt px-4 py-3 text-[15px] outline-none focus:border-brand-blue-400 focus:ring-4 focus:ring-brand-blue-100 dark:focus:ring-brand-blue-500/20 transition resize-none"></textarea>
+            <textarea name="message" id="cf_message" rows="3" placeholder="{% translate 'Savolingiz yoki qoʻshimcha maʼlumot…' %}" class="w-full rounded-xl border bd bg-alt px-4 py-3 text-[15px] outline-none focus:border-brand-violet-400 focus:ring-4 focus:ring-brand-violet-100 dark:focus:ring-brand-violet-500/20 transition resize-none"></textarea>
           </div>
-          <p data-form-error class="hidden text-[13px] font-medium text-brand-red-600" role="alert"></p>
-          <button type="submit" data-sending="{% translate 'Yuborilmoqda…' %}" class="w-full rounded-pill bg-brand-red-600 px-6 py-3.5 text-[15px] font-semibold text-white transition hover:bg-brand-red-700 hover:-translate-y-0.5 disabled:opacity-70" style="box-shadow:0 12px 26px -10px rgba(192,26,32,.55)">{{ site_copy.lead_submit_label }}</button>
+          <p data-form-error class="hidden text-[13px] font-medium text-red-600 dark:text-red-400" role="alert"></p>
+          <button type="submit" data-sending="{% translate 'Yuborilmoqda…' %}" class="w-full rounded-pill bg-brand-gold-500 px-6 py-3.5 text-[15px] font-semibold text-brand-violet-900 transition hover:bg-brand-gold-600 hover:-translate-y-0.5 disabled:opacity-70" style="box-shadow:0 12px 26px -10px rgba(185,134,29,.5)">{{ site_copy.lead_submit_label }}</button>
         </form>
       </div>
 
@@ -41,7 +41,7 @@
           <div class="absolute inset-0 [&_iframe]:w-full [&_iframe]:h-full [&_iframe]:border-0">{{ site_config.safe_google_maps_embed }}</div>
         {% elif gsrc %}
           <div class="absolute right-3 top-3 z-[1] flex gap-1 rounded-pill surface-card border bd p-0.5 text-[13px] font-semibold shadow-soft">
-            <button type="button" data-map-tab="g" class="px-3.5 py-1.5 rounded-pill bg-brand-blue-500 text-white">Google</button>
+            <button type="button" data-map-tab="g" class="px-3.5 py-1.5 rounded-pill bg-brand-violet-500 text-white">Google</button>
             <button type="button" data-map-tab="y" class="px-3.5 py-1.5 rounded-pill txt-soft">Yandex</button>
           </div>
           <iframe data-map-frame="g" src="{{ gsrc }}" title="Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="absolute inset-0 w-full h-full border-0"></iframe>
@@ -58,23 +58,23 @@
     {# info bar #}
     <div class="sr mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
       <div class="rounded-card surface-card border bd p-4 flex gap-3 items-start">
-        <span class="grid place-items-center h-10 w-10 rounded-xl bg-brand-blue-50 dark:bg-brand-blue-500/15 text-brand-blue-600 dark:text-brand-blue-300 shrink-0">{% icon "location" size=18 %}</span>
-        <div><div class="font-display font-bold text-[14px]">{% translate "Manzil" %}</div><div class="text-[13.5px] txt-soft">{{ site_config.address|default:"Buxoro, Romitan, Bogʻiturkon" }}</div></div>
+        <span class="grid place-items-center h-10 w-10 rounded-xl bg-brand-violet-50 dark:bg-brand-violet-500/15 text-brand-violet-600 dark:text-brand-violet-300 shrink-0">{% icon "location" size=18 %}</span>
+        <div><div class="font-display font-bold text-[14px]">{% translate "Manzil" %}</div><div class="text-[13.5px] txt-soft">{{ site_config.address }}</div></div>
       </div>
       <div class="rounded-card surface-card border bd p-4 flex gap-3 items-start">
-        <span class="grid place-items-center h-10 w-10 rounded-xl bg-brand-blue-50 dark:bg-brand-blue-500/15 text-brand-blue-600 dark:text-brand-blue-300 shrink-0">{% icon "phone" size=18 %}</span>
+        <span class="grid place-items-center h-10 w-10 rounded-xl bg-brand-violet-50 dark:bg-brand-violet-500/15 text-brand-violet-600 dark:text-brand-violet-300 shrink-0">{% icon "phone" size=18 %}</span>
         <div>
           <div class="font-display font-bold text-[14px]">{% translate "Telefon" %}</div>
-          {% if site_config.phone_primary %}<a href="tel:{{ site_config.phone_primary }}" class="block text-[13.5px] txt-soft hover:text-brand-blue-600">{{ site_config.phone_primary|phone_display }}</a>{% endif %}
-          {% if site_config.phone_secondary %}<a href="tel:{{ site_config.phone_secondary }}" class="block text-[13.5px] txt-soft hover:text-brand-blue-600">{{ site_config.phone_secondary|phone_display }}</a>{% endif %}
+          {% if site_config.phone_primary %}<a href="tel:{{ site_config.phone_primary }}" class="block text-[13.5px] txt-soft hover:text-brand-violet-600">{{ site_config.phone_primary|phone_display }}</a>{% endif %}
+          {% if site_config.phone_secondary %}<a href="tel:{{ site_config.phone_secondary }}" class="block text-[13.5px] txt-soft hover:text-brand-violet-600">{{ site_config.phone_secondary|phone_display }}</a>{% endif %}
         </div>
       </div>
       <div class="rounded-card surface-card border bd p-4 flex gap-3 items-start">
-        <span class="grid place-items-center h-10 w-10 rounded-xl bg-brand-blue-50 dark:bg-brand-blue-500/15 text-brand-blue-600 dark:text-brand-blue-300 shrink-0">{% icon "language" size=18 %}</span>
+        <span class="grid place-items-center h-10 w-10 rounded-xl bg-brand-violet-50 dark:bg-brand-violet-500/15 text-brand-violet-600 dark:text-brand-violet-300 shrink-0">{% icon "language" size=18 %}</span>
         <div>
           <div class="font-display font-bold text-[14px]">{% translate "Ijtimoiy tarmoqlar" %}</div>
           <div class="mt-1 flex flex-wrap items-center gap-2">
-            {% for s in social_links %}<a href="{{ s.url }}" target="_blank" rel="noopener" class="h-8 w-8 grid place-items-center rounded-lg border bd text-brand-blue-600 dark:text-brand-blue-300 hover:border-brand-blue-300 transition" aria-label="{{ s.display_label }}" title="{{ s.display_label }}">{% social_icon s.icon_key size=15 %}</a>{% empty %}<span class="text-[13px] txt-soft">—</span>{% endfor %}
+            {% for s in social_links %}<a href="{{ s.url }}" target="_blank" rel="noopener" class="h-8 w-8 grid place-items-center rounded-lg border bd text-brand-violet-600 dark:text-brand-violet-300 hover:border-brand-violet-300 transition" aria-label="{{ s.display_label }}" title="{{ s.display_label }}">{% social_icon s.icon_key size=15 %}</a>{% empty %}<span class="text-[13px] txt-soft">—</span>{% endfor %}
           </div>
         </div>
       </div>

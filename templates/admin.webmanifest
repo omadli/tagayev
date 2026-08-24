@@ -1,7 +1,7 @@
 {% load static %}{
   "id": "{% url 'admin:index' %}",
-  "name": "Hopeschool Admin",
-  "short_name": "Hope Admin",
+  "name": "Tagayev Methods Admin",
+  "short_name": "Tagayev Admin",
   "start_url": "{% url 'admin:index' %}",
   "scope": "{% url 'admin:index' %}",
   "display": "standalone",

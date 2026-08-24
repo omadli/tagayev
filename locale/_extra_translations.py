@@ -286,8 +286,8 @@ PROJECT_RU = {
         'Связь с вами по вашей заявке и предоставление информации о курсах.',
     'Cookie va lokal saqlash':
         'Cookie и локальное хранилище',
-    'Hope School maxfiylik siyosati: qanday maʼlumotlar yigʻiladi va qanday ishlatiladi.':
-        'Политика конфиденциальности Hope School: какие данные собираются и как используются.',
+    'Tagayev Methods maxfiylik siyosati: qanday maʼlumotlar yigʻiladi va qanday ishlatiladi.':
+        'Политика конфиденциальности Tagayev Methods: какие данные собираются и как используются.',
     'Maxfiylik siyosati':
         'Политика конфиденциальности',
     'Maʼlumotlar kim bilan ulashiladi':
@@ -614,8 +614,8 @@ PROJECT_EN = {
         'To contact you about your request and provide information about courses.',
     'Cookie va lokal saqlash':
         'Cookies and local storage',
-    'Hope School maxfiylik siyosati: qanday maʼlumotlar yigʻiladi va qanday ishlatiladi.':
-        'Hope School privacy policy: what data is collected and how it is used.',
+    'Tagayev Methods maxfiylik siyosati: qanday maʼlumotlar yigʻiladi va qanday ishlatiladi.':
+        'Tagayev Methods privacy policy: what data is collected and how it is used.',
     'Maxfiylik siyosati':
         'Privacy policy',
     'Maʼlumotlar kim bilan ulashiladi':

@@ -1,9 +1,9 @@
 """Create the DatabaseCache table used by the lead-form rate limiter.
 
 settings.CACHES uses ``django.core.cache.backends.db.DatabaseCache`` (table
-``hopeschool_cache``), which Django does NOT create via the model migrations —
+``tagayev_cache``), which Django does NOT create via the model migrations —
 it normally needs a one-off ``manage.py createcachetable`` at deploy. Forgetting
-that step makes every POST /ariza/ raise ``no such table: hopeschool_cache``.
+that step makes every POST /ariza/ raise ``no such table: tagayev_cache``.
 
 Folding it into a migration makes the table part of the standard ``migrate``
 flow, so a fresh install or a reset DB can never miss it again. Idempotent:

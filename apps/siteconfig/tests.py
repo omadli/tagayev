@@ -109,9 +109,9 @@ class SocialLinkModelTests(TestCase):
 class SocialLinkRenderTests(TestCase):
     def test_link_renders_in_footer_and_jsonld(self):
         SocialLink.objects.create(
-            platform="telegram", url="https://t.me/hope_demo", is_active=True)
+            platform="telegram", url="https://t.me/tagayev_demo", is_active=True)
         body = self.client.get("/uz/", follow=True).content.decode("utf-8", "replace")
-        self.assertIn("https://t.me/hope_demo", body)      # footer icon link
+        self.assertIn("https://t.me/tagayev_demo", body)      # footer icon link
         self.assertIn('"sameAs"', body)                     # JSON-LD block present
 
     def test_inactive_link_not_rendered(self):
@@ -158,7 +158,7 @@ class TelegramRecipientModelTests(TestCase):
         r.full_clean()
 
     def test_username_chat_id_is_valid(self):
-        r = TelegramRecipient(name="Kanal", chat_id="@hope_admin")
+        r = TelegramRecipient(name="Kanal", chat_id="@tagayev_admin")
         r.full_clean()
 
     def test_invalid_chat_id_rejected(self):
@@ -194,7 +194,7 @@ class TelegramBotTokenWriteOnlyTests(TestCase):
 
     def _form(self, **extra):
         from apps.siteconfig.admin import SiteConfigForm
-        data = {"site_name": "Hope School", "telegram_notifications_enabled": "on"}
+        data = {"site_name": "Tagayev Methods", "telegram_notifications_enabled": "on"}
         data.update(extra)
         return SiteConfigForm(data=data, instance=self.config)
 

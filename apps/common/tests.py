@@ -777,16 +777,14 @@ class TranslateBackendTests(SimpleTestCase):
 class ProtectedTermsTests(SimpleTestCase):
     """Brand/program names must survive a round-trip through the real MT
     engine call unchanged — Google Translate otherwise mistranslates them
-    as ordinary words (e.g. "Hope School" -> "Школа Надежды")."""
+    as ordinary words."""
 
     def test_protect_then_restore_roundtrip(self):
         from apps.common.translation import _protect_terms, _restore_terms
 
-        original = "Hope School va Hope Academy va Bolajon guruhi"
+        original = "Tagayev Methods markazining yangi guruhi"
         protected = _protect_terms(original)
-        self.assertNotIn("Hope School", protected)
-        self.assertNotIn("Hope Academy", protected)
-        self.assertNotIn("Bolajon", protected)
+        self.assertNotIn("Tagayev Methods", protected)
         self.assertEqual(_restore_terms(protected), original)
 
     @patch("deep_translator.GoogleTranslator")
@@ -797,18 +795,9 @@ class ProtectedTermsTests(SimpleTestCase):
         mock_cls.return_value.translate.return_value = "Открыта новая группа в 700200301."
         from apps.common.translation import _engine_translate
 
-        result = _engine_translate("Hope School markazida yangi guruh ochildi.", "ru", "uz")
-        self.assertIn("Hope School", result)
+        result = _engine_translate("Tagayev Methods markazida yangi guruh ochildi.", "ru", "uz")
+        self.assertIn("Tagayev Methods", result)
         self.assertNotIn("700200301", result)
-
-    @patch("deep_translator.GoogleTranslator")
-    def test_engine_translate_restores_bolajon(self, mock_cls):
-        mock_cls.return_value.translate.return_value = '"700200303 1" guruhi darsda.'
-        from apps.common.translation import _engine_translate
-
-        result = _engine_translate('"Bolajon 1" guruhi darsda.', "ru", "uz")
-        self.assertIn("Bolajon", result)
-        self.assertNotIn("700200303", result)
 
 
 @patch("apps.common.translation._engine_translate", _fake_engine)

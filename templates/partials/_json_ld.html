@@ -6,19 +6,16 @@
   "@context": "https://schema.org",
   "@type": ["EducationalOrganization", "LocalBusiness"],
   "@id": "{{ request.scheme }}://{{ request.get_host }}/#org",
-  "name": "{{ site_config.site_name|default:'Hope School'|escapejs }}",
+  "name": "{{ site_config.site_name|default:'Tagayev Methods'|escapejs }}",
   "url": "{{ request.scheme }}://{{ request.get_host }}/",
 {% if site_config.logo %}  "logo": "{{ request.scheme }}://{{ request.get_host }}{{ site_config.logo.url }}",
 {% elif site_config.og_image %}  "logo": "{{ request.scheme }}://{{ request.get_host }}{{ site_config.og_image.url }}",
 {% endif %}{% if site_config.seo_description %}  "description": "{{ site_config.seo_description|escapejs }}",
 {% endif %}{% if site_config.phone_primary %}  "telephone": "{{ site_config.phone_primary|escapejs }}",
 {% endif %}{% if site_config.email %}  "email": "{{ site_config.email|escapejs }}",
-{% endif %}  "foundingDate": "2023",
-{% if site_config.address %}  "address": {
+{% endif %}{% if site_config.address %}  "address": {
     "@type": "PostalAddress",
     "streetAddress": "{{ site_config.address|escapejs }}",
-    "addressLocality": "Bogʻiturkon",
-    "addressRegion": "Buxoro",
     "addressCountry": "UZ"
   },
 {% endif %}{% if site_config.has_geo %}  "geo": {

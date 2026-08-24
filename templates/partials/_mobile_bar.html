@@ -1,9 +1,9 @@
 {% load i18n %}
 <div class="lg:hidden fixed bottom-0 inset-x-0 z-40 surface-card border-t bd px-3 py-2.5 flex items-center gap-2.5" style="padding-bottom:max(0.625rem,env(safe-area-inset-bottom))">
   {% if site_config.phone_primary %}
-  <a href="tel:{{ site_config.phone_primary }}" class="grid place-items-center h-12 w-12 shrink-0 rounded-pill border bd text-brand-blue-600" aria-label="{% translate 'Qoʻngʻiroq' %}">
+  <a href="tel:{{ site_config.phone_primary }}" class="grid place-items-center h-12 w-12 shrink-0 rounded-pill border bd text-brand-violet-600" aria-label="{% translate 'Qoʻngʻiroq' %}">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 2.1 4.1 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7l.7 2.9a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5l2.9.7A2 2 0 0 1 22 16.9z"/></svg>
   </a>
   {% endif %}
-  <button data-open-modal class="flex-1 h-12 rounded-pill bg-brand-red-600 text-white font-semibold text-[15px]">{% translate "Ariza qoldirish" %}</button>
+  <button data-open-modal class="flex-1 h-12 rounded-pill bg-brand-gold-500 text-brand-violet-900 font-semibold text-[15px]">{% translate "Ariza qoldirish" %}</button>
 </div>

@@ -1,7 +1,7 @@
-# Hope School — Oʻquv Markazi Sayti
+# Tagayev Methods — Oʻquv Markazi Sayti
 
-[![CI/CD](https://github.com/omadli/hopeschool/actions/workflows/deploy.yml/badge.svg)](https://github.com/omadli/hopeschool/actions/workflows/deploy.yml)
-[![Tests](https://img.shields.io/badge/tests-286%20passing-brightgreen)](https://github.com/omadli/hopeschool/actions/workflows/deploy.yml)
+[![CI/CD](https://github.com/omadli/tagayev/actions/workflows/deploy.yml/badge.svg)](https://github.com/omadli/tagayev/actions/workflows/deploy.yml)
+[![Tests](https://img.shields.io/badge/tests-286%20passing-brightgreen)](https://github.com/omadli/tagayev/actions/workflows/deploy.yml)
 [![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![Django](https://img.shields.io/badge/Django-5.2-092E20?logo=django&logoColor=white)](https://www.djangoproject.com/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-38BDF8?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
@@ -9,7 +9,7 @@
 ![i18n](https://img.shields.io/badge/i18n-uz%20%7C%20ru%20%7C%20en-1E88E5)
 ![Node.js](https://img.shields.io/badge/Node.js-talab%20qilinmaydi-success)
 
-> **Bogʻiturkon qishlogʻi (Romitan, Buxoro) uchun zamonaviy taʼlim markazi landing sayti.**
+> **Zamonaviy taʼlim markazi landing sayti.**
 > Toʻliq admin-boshqaruv, 3 til (oʻzbek / rus / ingliz), avtomatik tarjima, analitika va bir tugmali deploy — **Node.js talab qilinmaydi**.
 
 ---
@@ -40,7 +40,7 @@
 
 ## Loyiha haqida
 
-**Hope School** — Buxoro viloyati, Romitan tumani, Bogʻiturkon qishlogʻidagi oʻquv markazi uchun yaratilgan reklama/landing veb-sayt. Sayt potentsial oʻquvchilar va ota-onalarga markaz haqida toʻliq maʼlumot beradi va ariza topshirish imkonini yaratadi.
+**Tagayev Methods** — oʻquv markazi uchun yaratilgan reklama/landing veb-sayt. Sayt potentsial oʻquvchilar va ota-onalarga markaz haqida toʻliq maʼlumot beradi va ariza topshirish imkonini yaratadi.
 
 Asosiy xususiyatlar:
 
@@ -125,8 +125,8 @@ Asosiy xususiyatlar:
 ### 1. Repozitoriyani klonlash
 
 ```bash
-git clone https://github.com/omadli/hopeschool.git
-cd hopeschool
+git clone https://github.com/omadli/tagayev.git
+cd tagayev
 ```
 
 ### 2. Virtual muhit yaratish va aktivlashtirish
@@ -189,13 +189,11 @@ python manage.py runserver 127.0.0.1:8001
 Sayt: [http://127.0.0.1:8001](http://127.0.0.1:8001)
 Admin: [http://127.0.0.1:8001/admin/](http://127.0.0.1:8001/admin/)
 
-### 9. Demo maʼlumotlarni yuklash (ixtiyoriy)
+### 9. Kontentni toʻldirish
 
-```bash
-python manage.py seed_demo
-```
-
-Bu buyruq kurslar, oʻqituvchilar, yangiliklar, galereya, sertifikatlar va boshqa namunaviy maʼlumotlarni bazaga yuklaydi. Mavjud demo maʼlumotlar avval tozalanadi.
+Baza boʻsh holda keladi. Kurslar, oʻqituvchilar, yangiliklar, galereya,
+sertifikatlar va sayt matnlari **faqat admin panel** orqali kiritiladi
+(`/admin/`). Demo/seed buyrugʻi yoʻq.
 
 ---
 
@@ -207,8 +205,8 @@ Bu buyruq kurslar, oʻqituvchilar, yangiliklar, galereya, sertifikatlar va boshq
 |-------------|----------|----------|--------|
 | `DEBUG` | Yoʻq | `True` | Development uchun `True`, production uchun `False` |
 | `SECRET_KEY` | **Ha** | — | Django maxfiy kaliti; `python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"` bilan generatsiya qiling |
-| `ALLOWED_HOSTS` | **Ha** | `*` | Vergul bilan ajratilgan domenlar, masalan: `hopeschool.uz,www.hopeschool.uz` |
-| `CSRF_TRUSTED_ORIGINS` | Production | — | HTTPS manzillar, masalan: `https://hopeschool.uz` |
+| `ALLOWED_HOSTS` | **Ha** | `*` | Vergul bilan ajratilgan domenlar, masalan: `tagayev.uz,www.tagayev.uz` |
+| `CSRF_TRUSTED_ORIGINS` | Production | — | HTTPS manzillar, masalan: `https://tagayev.uz` |
 | `ADMIN_URL` | Yoʻq | `admin` | Admin panel URL prefiksi — productionda topish qiyin qiymat qoʻying (masalan, `boshqaruv-7x3k`) |
 | `TRUSTED_PROXY_COUNT` | Yoʻq | `1` | Oldindagi proksi soni: nginx=`1`, Cloudflare bilan `2` (rate-limit haqiqiy mijoz IP sini oladi) |
 | `TELEGRAM_BOT_TOKEN` | Yoʻq | — | **Zaxira** Telegram bot tokeni (asosiysi admin paneldan kiritiladi). Panel boʻsh boʻlsa ishlatiladi |
@@ -227,8 +225,8 @@ Bu buyruq kurslar, oʻqituvchilar, yangiliklar, galereya, sertifikatlar va boshq
 ```env
 DEBUG=False
 SECRET_KEY=your-very-secret-key-here
-ALLOWED_HOSTS=hopeschool.uz,www.hopeschool.uz
-CSRF_TRUSTED_ORIGINS=https://hopeschool.uz,https://www.hopeschool.uz
+ALLOWED_HOSTS=tagayev.uz,www.tagayev.uz
+CSRF_TRUSTED_ORIGINS=https://tagayev.uz,https://www.tagayev.uz
 ADMIN_URL=boshqaruv-7x3k
 TELEGRAM_BOT_TOKEN=1234567890:AAFxxxxxxxxxxxxxx
 TELEGRAM_ADMIN_CHAT_ID=-1001234567890
@@ -243,7 +241,6 @@ TELEGRAM_ADMIN_CHAT_ID=-1001234567890
 | `python manage.py tailwind build` | Tailwind CSS faylini yaratadi (production uchun) |
 | `python manage.py tailwind watch` | CSS oʻzgarishlarini kuzatadi (development uchun) |
 | `python manage.py tailwind runserver` | `watch` + `runserver` birgalikda ishga tushiradi |
-| `python manage.py seed_demo` | Namunaviy maʼlumotlarni bazaga yuklaydi |
 | `python manage.py migrate` | Migratsiyalarni qoʻllaydi |
 | `python manage.py createcachetable` | Rate-limit uchun umumiy cache jadvalini yaratadi |
 | `python manage.py createsuperuser` | Admin foydalanuvchi yaratadi |
@@ -261,7 +258,7 @@ TELEGRAM_ADMIN_CHAT_ID=-1001234567890
 ## Loyiha tuzilishi
 
 ```
-hopeschool/
+tagayev/
 ├── config/                  # Django konfiguratsiyasi
 │   ├── settings.py          #   Asosiy sozlamalar (i18n, DB, Tailwind, Unfold, xavfsizlik, TELEGRAM)
 │   ├── urls.py              #   URL marshrutlar (i18n_patterns + /ariza/ + /i18n/ + ADMIN_URL)
@@ -285,9 +282,9 @@ hopeschool/
 │   └── partials/            #   Header, footer, modal, mobile bar
 │
 ├── deploy/                  # Production konfiguratsiya fayllari
-│   ├── hopeschool.service   #   gunicorn systemd unit
+│   ├── tagayev.service   #   gunicorn systemd unit
 │   ├── gunicorn.conf.py     #   gunicorn sozlamalari (unix socket, workers)
-│   ├── hopeschool.uz.conf   #   nginx sayt konfiguratsiyasi
+│   ├── tagayev.uz.conf   #   nginx sayt konfiguratsiyasi
 │   ├── nginx-ratelimit.conf #   nginx rate-limit / connection zonalari
 │   ├── resolve-geoip.*      #   Geo-IP systemd service + timer (30 daq.)
 │   └── fail2ban/            #   fail2ban filter + jail (429 spam IP bloklash)
@@ -477,7 +474,7 @@ Qamrab olingan sahifalar:
 User-agent: *
 Disallow: /admin/
 Disallow: /media/
-Sitemap: https://hopeschool.uz/sitemap.xml
+Sitemap: https://tagayev.uz/sitemap.xml
 ```
 
 ### Sahifa `<head>` — meta va canonical
@@ -496,11 +493,11 @@ Sahifaga xos meta_title / meta_description
 **Canonical va hreflang:**
 
 ```html
-<link rel="canonical" href="https://hopeschool.uz/uz/kurslar/ingliz-tili/" />
-<link rel="alternate" hreflang="uz"      href="https://hopeschool.uz/uz/kurslar/ingliz-tili/" />
-<link rel="alternate" hreflang="ru"      href="https://hopeschool.uz/ru/kurslar/ingliz-tili/" />
-<link rel="alternate" hreflang="en"      href="https://hopeschool.uz/en/kurslar/ingliz-tili/" />
-<link rel="alternate" hreflang="x-default" href="https://hopeschool.uz/uz/kurslar/ingliz-tili/" />
+<link rel="canonical" href="https://tagayev.uz/uz/kurslar/ingliz-tili/" />
+<link rel="alternate" hreflang="uz"      href="https://tagayev.uz/uz/kurslar/ingliz-tili/" />
+<link rel="alternate" hreflang="ru"      href="https://tagayev.uz/ru/kurslar/ingliz-tili/" />
+<link rel="alternate" hreflang="en"      href="https://tagayev.uz/en/kurslar/ingliz-tili/" />
+<link rel="alternate" hreflang="x-default" href="https://tagayev.uz/uz/kurslar/ingliz-tili/" />
 ```
 
 ### Open Graph va Twitter Card
@@ -765,7 +762,7 @@ CI da `.env` yoʻq (gitignore) — sozlamalar dev standartlariga qaytadi va xavf
 **`deploy` ishi** faqat `main` ga **push** boʻlganda va **testlar oʻtgach** ishlaydi:
 
 - `appleboy/ssh-action` orqali `ubuntu` sifatida **parol bilan** SSH ulanadi.
-- `script` bloki `/home/ubuntu/hopeschool` da redeploy qadamlarini bajaradi: `git pull` → `pip install` → `migrate` → `tailwind build` → `collectstatic` → `compilemo` → `sudo systemctl restart hopeschool`.
+- `script` bloki `/home/ubuntu/tagayev` da redeploy qadamlarini bajaradi: `git pull` → `pip install` → `migrate` → `tailwind build` → `collectstatic` → `compilemo` → `sudo systemctl restart tagayev`.
 - Oxirgi qadam (`systemctl restart`) CI da parolsiz ishlashi uchun serverda tor NOPASSWD sudoers qoidasi kerak (`docs/JOYLASHTIRISH.md`).
 - `concurrency` bilan ikki deploy bir vaqtda ketmasligi kafolatlanadi.
 
@@ -786,7 +783,7 @@ python manage.py migrate
 python manage.py tailwind build            # collectstatic'dan OLDIN — aks holda CSS yig'ilmaydi
 python manage.py collectstatic --noinput
 python manage.py compilemo                 # .po → .mo (polib; serverda msgfmt yo'q)
-sudo systemctl restart hopeschool
+sudo systemctl restart tagayev
 ```
 
 > **Xavfsizlik tekshiruvi:** deploydan oldin `python manage.py check --deploy` "no issues" berishi kerak — bu tekshiruv `apps/common/test_deploy.py` testida ham ushlab turiladi.

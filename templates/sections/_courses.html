@@ -4,7 +4,7 @@
   <div class="mx-auto max-w-6xl px-4 lg:px-8">
     <div class="sr flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-9">
       <div>
-        <span class="text-[12.5px] font-bold uppercase tracking-[0.18em] text-brand-blue-600 dark:text-brand-blue-300">{% translate "Yoʻnalishlar" %}</span>
+        <span class="text-[12.5px] font-bold uppercase tracking-[0.18em] text-brand-violet-600 dark:text-brand-violet-300">{% translate "Yoʻnalishlar" %}</span>
         <h2 class="mt-2 font-display font-extrabold tracking-tight text-[clamp(1.7rem,3.4vw,2.5rem)] leading-tight">{% translate "Bizning kurslarimiz" %}</h2>
       </div>
     </div>
@@ -14,7 +14,7 @@
         <div class="p-5">
           <div class="flex items-center justify-between">
             <span class="grid place-items-center h-11 w-11 rounded-xl grad-cap text-white">{% icon course.icon size=22 %}</span>
-            {% if course.category %}<span class="rounded-pill {% if course.is_featured %}bg-brand-red-50 dark:bg-brand-red-500/15 text-brand-red-600 dark:text-brand-red-300{% else %}bg-brand-blue-50 dark:bg-brand-blue-500/15 text-brand-blue-700 dark:text-brand-blue-300{% endif %} text-[12px] font-semibold px-3 py-1">{{ course.category.name }}</span>{% endif %}
+            {% if course.category %}<span class="rounded-pill {% if course.is_featured %}bg-brand-gold-50 dark:bg-brand-gold-500/15 text-brand-gold-700 dark:text-brand-gold-300{% else %}bg-brand-violet-50 dark:bg-brand-violet-500/15 text-brand-violet-700 dark:text-brand-violet-300{% endif %} text-[12px] font-semibold px-3 py-1">{{ course.category.name }}</span>{% endif %}
           </div>
           <h3 class="mt-4 font-display font-bold text-[18px]">{{ course.name }}</h3>
           {% if course.short_description %}<p class="mt-1.5 text-[14px] leading-relaxed txt-soft">{{ course.short_description }}</p>{% endif %}
@@ -31,7 +31,7 @@
               <span class="text-[13px] txt-soft">{% translate "Narx — murojaat orqali" %}</span>
             {% endif %}
           </div>
-          <a href="{{ course.get_absolute_url }}" class="inline-flex items-center gap-1 text-[14px] font-semibold text-brand-blue-700 dark:text-brand-blue-300 group-hover:gap-2 transition-all">{% translate "Batafsil" %} →</a>
+          <a href="{{ course.get_absolute_url }}" class="inline-flex items-center gap-1 text-[14px] font-semibold text-brand-violet-700 dark:text-brand-violet-300 group-hover:gap-2 transition-all">{% translate "Batafsil" %} →</a>
         </div>
       </article>
       {% endfor %}

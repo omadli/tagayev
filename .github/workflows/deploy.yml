@@ -52,8 +52,8 @@ jobs:
         env:
           DEBUG: "False"
           SECRET_KEY: "ci-deploy-check-strong-secret-key-not-for-production-abc123"
-          ALLOWED_HOSTS: "hopeschool.uz,www.hopeschool.uz"
-          CSRF_TRUSTED_ORIGINS: "https://hopeschool.uz,https://www.hopeschool.uz"
+          ALLOWED_HOSTS: "tagayev.uz,www.tagayev.uz"
+          CSRF_TRUSTED_ORIGINS: "https://tagayev.uz,https://www.tagayev.uz"
           SECURE_SSL_REDIRECT: "True"
         run: python manage.py check --deploy --fail-level WARNING
 
@@ -66,7 +66,7 @@ jobs:
   # ---------------------------------------------------------------------------
   # CD — deploy to the server, but ONLY on push to main and ONLY if tests pass.
   # Connects as the ordinary 'ubuntu' user over SSH (password auth) and runs the
-  # redeploy steps in-place under /home/ubuntu/hopeschool. `systemctl restart`
+  # redeploy steps in-place under /home/ubuntu/tagayev. `systemctl restart`
   # needs a NOPASSWD sudoers rule for that one command — see docs/JOYLASHTIRISH.md.
   # ---------------------------------------------------------------------------
   deploy:
@@ -88,7 +88,7 @@ jobs:
           command_timeout: 15m
           script: |
             set -e                                    # abort on first failing command
-            cd /home/ubuntu/hopeschool
+            cd /home/ubuntu/tagayev
             git pull --ff-only
             venv/bin/pip install -r requirements.txt
             venv/bin/python manage.py migrate --noinput
@@ -106,4 +106,4 @@ jobs:
             # Pre-generate thumbnails so the first real visitor doesn't pay the
             # Pillow resize/WebP-encode cost (which can 502 a sync worker).
             venv/bin/python manage.py warm_thumbnails || true
-            sudo systemctl restart hopeschool
+            sudo systemctl restart tagayev

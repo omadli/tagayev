@@ -1,10 +1,10 @@
-# Hope School — schedule for resolve-geoip.service
+# Tagayev Methods — schedule for resolve-geoip.service
 #
 # Runs every 30 minutes (and ~2 min after boot). The dashboard "Davlatlar
 # boʻyicha tashriflar" panel stays empty until this has run at least once.
 
 [Unit]
-Description=Run Hope School geo-IP resolution periodically
+Description=Run Tagayev Methods geo-IP resolution periodically
 
 [Timer]
 OnBootSec=2min

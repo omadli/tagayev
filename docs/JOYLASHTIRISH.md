@@ -1,4 +1,4 @@
-# Serverga Joylashtirish (Deploy) — Hope School
+# Serverga Joylashtirish (Deploy) — Tagayev Methods
 
 > Bu qoʻllanma loyihani Ubuntu serverida (masalan, AWS EC2) ishlab chiqarish
 > (production) muhitida ishga tushirishning toʻliq qadamlarini tavsiflaydi:
@@ -54,7 +54,7 @@ Internet ──HTTPS──▶ nginx ──unix socket──▶ gunicorn ──�
 | nginx | `sudo apt install nginx` |
 | Certbot | `sudo apt install certbot python3-certbot-nginx` |
 | fail2ban | `sudo apt install fail2ban` (IP bloklash) |
-| Domen | `hopeschool.uz` A-yozuvi server IP ga yoʻnaltirilgan |
+| Domen | `tagayev.uz` A-yozuvi server IP ga yoʻnaltirilgan |
 
 ```bash
 sudo apt update
@@ -66,27 +66,27 @@ sudo apt install -y python3-venv python3-pip nginx certbot python3-certbot-nginx
 ## Foydalanuvchi va kataloglar
 
 Ilova **alohida servis foydalanuvchisi talab qilmaydi** — barcha ish oddiy
-`ubuntu` login foydalanuvchisida, to'g'ridan-to'g'ri `/home/ubuntu/hopeschool`
+`ubuntu` login foydalanuvchisida, to'g'ridan-to'g'ri `/home/ubuntu/tagayev`
 papkasida ketadi (alohida `app/` papka ham yoʻq).
 
 ```bash
-mkdir -p /home/ubuntu/hopeschool
+mkdir -p /home/ubuntu/tagayev
 # nginx (www-data) statik/media fayllarni oʻqishi uchun home papkaga "traverse"
 # (x) ruxsati kerak — aks holda /static/ va /media/ 403 beradi:
 chmod o+x /home/ubuntu
 ```
 
-> `deploy/` ichidagi fayllar `/home/ubuntu/hopeschool` yoʻlini va `ubuntu`
+> `deploy/` ichidagi fayllar `/home/ubuntu/tagayev` yoʻlini va `ubuntu`
 > foydalanuvchisini nazarda tutadi. Servis `www-data` guruhida ishlaydi, shuning
-> uchun nginx gunicorn socketini (`/run/hopeschool/gunicorn.sock`) oʻqiy oladi.
+> uchun nginx gunicorn socketini (`/run/tagayev/gunicorn.sock`) oʻqiy oladi.
 
 ---
 
 ## Kodni olish va paketlar
 
 ```bash
-cd /home/ubuntu/hopeschool
-git clone https://github.com/omadli/hopeschool.git .
+cd /home/ubuntu/tagayev
+git clone https://github.com/omadli/tagayev.git .
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
@@ -111,8 +111,8 @@ DEBUG=False
 SECRET_KEY=<yangi-kuchli-kalit>
 
 # Aniq domenlar — '*' EMAS
-ALLOWED_HOSTS=hopeschool.uz,www.hopeschool.uz
-CSRF_TRUSTED_ORIGINS=https://hopeschool.uz,https://www.hopeschool.uz
+ALLOWED_HOSTS=tagayev.uz,www.tagayev.uz
+CSRF_TRUSTED_ORIGINS=https://tagayev.uz,https://www.tagayev.uz
 
 TELEGRAM_BOT_TOKEN=<bot-token>
 TELEGRAM_ADMIN_CHAT_ID=<chat-id>
@@ -133,7 +133,7 @@ TELEGRAM_ADMIN_CHAT_ID=<chat-id>
 ## Baza, statik, tarjima, superuser
 
 ```bash
-# venv aktiv, /home/ubuntu/hopeschool da
+# venv aktiv, /home/ubuntu/tagayev da
 python manage.py migrate
 python manage.py createcachetable          # rate-limit uchun umumiy cache jadvali
 python manage.py tailwind build            # → assets/css/tailwind.css (collectstatic'dan OLDIN!)
@@ -153,8 +153,8 @@ python manage.py import_cefr            # cefr_urls.txt dan o'qiydi
 Kataloglarga yozish huquqini taʼminlang:
 
 ```bash
-sudo chown -R ubuntu:www-data /home/ubuntu/hopeschool
-sudo chmod -R g+rwX /home/ubuntu/hopeschool/media
+sudo chown -R ubuntu:www-data /home/ubuntu/tagayev
+sudo chmod -R g+rwX /home/ubuntu/tagayev/media
 ```
 
 ---
@@ -165,7 +165,7 @@ Django joylashtirishdan oldin sozlamalarni tekshiradi:
 
 ```bash
 DEBUG=False SECRET_KEY=$(grep SECRET_KEY .env | cut -d= -f2) \
-ALLOWED_HOSTS=hopeschool.uz python manage.py check --deploy
+ALLOWED_HOSTS=tagayev.uz python manage.py check --deploy
 ```
 
 Natija **"System check identified no issues"** boʻlishi kerak. Loyiha bu
@@ -177,16 +177,16 @@ tekshiruvni avtomatlashtirilgan testda ham ushlab turadi
 ## gunicorn (systemd)
 
 ```bash
-sudo cp /home/ubuntu/hopeschool/deploy/hopeschool.service /etc/systemd/system/hopeschool.service
+sudo cp /home/ubuntu/tagayev/deploy/tagayev.service /etc/systemd/system/tagayev.service
 # Unit sintaksisini tekshiring:
-systemd-analyze verify /etc/systemd/system/hopeschool.service
+systemd-analyze verify /etc/systemd/system/tagayev.service
 sudo systemctl daemon-reload
-sudo systemctl enable --now hopeschool
-sudo systemctl status hopeschool        # active (running) boʻlishi kerak
-journalctl -u hopeschool -f             # loglar
+sudo systemctl enable --now tagayev
+sudo systemctl status tagayev        # active (running) boʻlishi kerak
+journalctl -u tagayev -f             # loglar
 ```
 
-gunicorn unix-socketni `/run/hopeschool/gunicorn.sock` da yaratadi
+gunicorn unix-socketni `/run/tagayev/gunicorn.sock` da yaratadi
 (`deploy/gunicorn.conf.py`). Worker sonini `.env` da `GUNICORN_WORKERS` bilan
 sozlash mumkin (SQLite uchun 2–3 yetarli).
 
@@ -198,14 +198,14 @@ sozlash mumkin (SQLite uchun 2–3 yetarli).
 ### Avtomatik deploy uchun `sudo` (CI/CD)
 
 GitHub Actions (`.github/workflows/deploy.yml`) `ubuntu` sifatida SSH orqali
-ulanib, oxirida `sudo systemctl restart hopeschool` bajaradi. Bu CI da **parolsiz**
+ulanib, oxirida `sudo systemctl restart tagayev` bajaradi. Bu CI da **parolsiz**
 ishlashi uchun tor doiradagi NOPASSWD qoidasini qoʻshing:
 
 ```bash
-echo 'ubuntu ALL=(root) NOPASSWD: /usr/bin/systemctl restart hopeschool, /usr/bin/systemctl reload hopeschool' \
-  | sudo tee /etc/sudoers.d/hopeschool-deploy
-sudo chmod 440 /etc/sudoers.d/hopeschool-deploy
-sudo visudo -cf /etc/sudoers.d/hopeschool-deploy    # sintaksisni tekshiring
+echo 'ubuntu ALL=(root) NOPASSWD: /usr/bin/systemctl restart tagayev, /usr/bin/systemctl reload tagayev' \
+  | sudo tee /etc/sudoers.d/tagayev-deploy
+sudo chmod 440 /etc/sudoers.d/tagayev-deploy
+sudo visudo -cf /etc/sudoers.d/tagayev-deploy    # sintaksisni tekshiring
 ```
 
 ---
@@ -214,10 +214,10 @@ sudo visudo -cf /etc/sudoers.d/hopeschool-deploy    # sintaksisni tekshiring
 
 ```bash
 # Rate-limit zonalari (http kontekstida — conf.d ga):
-sudo cp /home/ubuntu/hopeschool/deploy/nginx-ratelimit.conf /etc/nginx/conf.d/hopeschool-ratelimit.conf
+sudo cp /home/ubuntu/tagayev/deploy/nginx-ratelimit.conf /etc/nginx/conf.d/tagayev-ratelimit.conf
 # Sayt konfiguratsiyasi:
-sudo cp /home/ubuntu/hopeschool/deploy/hopeschool.uz.conf /etc/nginx/sites-available/hopeschool.uz.conf
-sudo ln -s /etc/nginx/sites-available/hopeschool.uz.conf /etc/nginx/sites-enabled/
+sudo cp /home/ubuntu/tagayev/deploy/tagayev.uz.conf /etc/nginx/sites-available/tagayev.uz.conf
+sudo ln -s /etc/nginx/sites-available/tagayev.uz.conf /etc/nginx/sites-enabled/
 sudo rm -f /etc/nginx/sites-enabled/default
 sudo nginx -t && sudo systemctl reload nginx
 ```
@@ -227,14 +227,14 @@ sudo nginx -t && sudo systemctl reload nginx
 ## HTTPS (Certbot)
 
 ```bash
-sudo certbot --nginx -d hopeschool.uz -d www.hopeschool.uz
+sudo certbot --nginx -d tagayev.uz -d www.tagayev.uz
 ```
 
-Certbot `hopeschool.uz.conf` ni avtomatik tahrirlaydi: 443-portli TLS bloki va
+Certbot `tagayev.uz.conf` ni avtomatik tahrirlaydi: 443-portli TLS bloki va
 HTTP→HTTPS yoʻnaltirishni qoʻshadi. Sertifikat avtomatik yangilanadi
 (`systemctl status certbot.timer`).
 
-HTTPS ishlagach, kerak boʻlsa `hopeschool.uz.conf` dagi **CSP** (Content-Security-Policy)
+HTTPS ishlagach, kerak boʻlsa `tagayev.uz.conf` dagi **CSP** (Content-Security-Policy)
 blokini izohdan chiqaring va brauzer konsolida har bir sahifani tekshiring
 (barcha tashqi resurslar — shriftlar, xaritalar, video — ishlashini).
 
@@ -246,8 +246,8 @@ Dashboarddagi "Davlatlar boʻyicha tashriflar" paneli `resolve_geoip` buyruq
 ishlamaguncha boʻsh boʻladi. Uni 30 daqiqada bir avtomatik ishlatamiz:
 
 ```bash
-sudo cp /home/ubuntu/hopeschool/deploy/resolve-geoip.service /etc/systemd/system/
-sudo cp /home/ubuntu/hopeschool/deploy/resolve-geoip.timer   /etc/systemd/system/
+sudo cp /home/ubuntu/tagayev/deploy/resolve-geoip.service /etc/systemd/system/
+sudo cp /home/ubuntu/tagayev/deploy/resolve-geoip.timer   /etc/systemd/system/
 sudo systemctl daemon-reload
 sudo systemctl enable --now resolve-geoip.timer
 sudo systemctl list-timers resolve-geoip.timer
@@ -280,14 +280,14 @@ nginx loglarini kuzatib, cheklovni qayta-qayta buzgan IP larni **iptables**
 darajasida bloklaydi — keyingi trafik nginx gacha ham yetib bormaydi.
 
 ```bash
-sudo cp /home/ubuntu/hopeschool/deploy/fail2ban/filter.d/hopeschool-nginx-429.conf /etc/fail2ban/filter.d/
-sudo cp /home/ubuntu/hopeschool/deploy/fail2ban/jail.d/hopeschool.conf /etc/fail2ban/jail.d/
-# O'z IP manzilingizni jail.d/hopeschool.conf ichidagi `ignoreip` ga qo'shing!
+sudo cp /home/ubuntu/tagayev/deploy/fail2ban/filter.d/tagayev-nginx-429.conf /etc/fail2ban/filter.d/
+sudo cp /home/ubuntu/tagayev/deploy/fail2ban/jail.d/tagayev.conf /etc/fail2ban/jail.d/
+# O'z IP manzilingizni jail.d/tagayev.conf ichidagi `ignoreip` ga qo'shing!
 # Filtr regex'ini haqiqiy logga moslab tekshiring (0 ta match boʻlsa, format farq qiladi):
-sudo fail2ban-regex /var/log/nginx/access.log /etc/fail2ban/filter.d/hopeschool-nginx-429.conf
+sudo fail2ban-regex /var/log/nginx/access.log /etc/fail2ban/filter.d/tagayev-nginx-429.conf
 sudo systemctl enable --now fail2ban
 sudo fail2ban-client status                      # jail roʻyxati
-sudo fail2ban-client status hopeschool-nginx-429 # bloklangan IP lar
+sudo fail2ban-client status tagayev-nginx-429 # bloklangan IP lar
 sudo fail2ban-client set <jail> unbanip 1.2.3.4  # qoʻlda blokdan chiqarish
 ```
 
@@ -315,14 +315,14 @@ saytni quyidagilar orqasiga qoʻyish kerak:
 ## Yangilash (redeploy)
 
 ```bash
-cd /home/ubuntu/hopeschool && source venv/bin/activate
+cd /home/ubuntu/tagayev && source venv/bin/activate
 git pull --ff-only
 pip install -r requirements.txt
 python manage.py migrate
 python manage.py tailwind build            # collectstatic'dan OLDIN — aks holda CSS yig'ilmaydi
 python manage.py collectstatic --noinput
 python manage.py compilemo                 # .po → .mo (polib; serverda msgfmt yo'q)
-sudo systemctl restart hopeschool
+sudo systemctl restart tagayev
 ```
 
 ---
@@ -333,9 +333,9 @@ SQLite bazasi va yuklangan media — eng muhim maʼlumotlar:
 
 ```bash
 # Baza (WAL rejimida xavfsiz nusxa olish uchun .backup ishlating):
-sqlite3 /home/ubuntu/hopeschool/db.sqlite3 ".backup '/home/ubuntu/backups/db-$(date +%F).sqlite3'"
+sqlite3 /home/ubuntu/tagayev/db.sqlite3 ".backup '/home/ubuntu/backups/db-$(date +%F).sqlite3'"
 # Media fayllar:
-tar czf /home/ubuntu/backups/media-$(date +%F).tar.gz -C /home/ubuntu/hopeschool media
+tar czf /home/ubuntu/backups/media-$(date +%F).tar.gz -C /home/ubuntu/tagayev media
 ```
 
 > Bu buyruqlarni `cron` yoki systemd timer orqali kunlik avtomatlashtiring, va
@@ -348,16 +348,16 @@ tar czf /home/ubuntu/backups/media-$(date +%F).tar.gz -C /home/ubuntu/hopeschool
 ### 502 Bad Gateway
 gunicorn ishlamayapti yoki socketga ruxsat yoʻq.
 ```bash
-sudo systemctl status hopeschool
-journalctl -u hopeschool -n 50
-ls -l /run/hopeschool/gunicorn.sock     # www-data oʻqiy olishi kerak
+sudo systemctl status tagayev
+journalctl -u tagayev -n 50
+ls -l /run/tagayev/gunicorn.sock     # www-data oʻqiy olishi kerak
 ```
 
 ### Statik fayllar (CSS) yuklanmayapti
 `collectstatic` bajarilmagan yoki nginx `alias` yoʻli notoʻgʻri.
 ```bash
 python manage.py collectstatic --noinput
-ls /home/ubuntu/hopeschool/staticfiles/css/tailwind.css
+ls /home/ubuntu/tagayev/staticfiles/css/tailwind.css
 ```
 
 ### Yuklangan rasm/video koʻrinmayapti (404)

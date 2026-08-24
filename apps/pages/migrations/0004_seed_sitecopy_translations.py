@@ -12,12 +12,12 @@ translation (or a re-run) is never clobbered.
 from django.db import migrations
 
 # field -> (uz, ru, en). UZ matches the model defaults; RU/EN reuse the
-# repo's existing human translations (adjusted for Buxoro and "natijalar").
+# repo's existing human translations.
 HERO = {
     "badge_text": (
-        "Zamonaviy taʼlim markazi · Buxoro",
-        "Современный образовательный центр · Бухара",
-        "Modern education center · Bukhara",
+        "Zamonaviy taʼlim markazi",
+        "Современный образовательный центр",
+        "Modern education center",
     ),
     "title_prefix": (
         "Farzandingiz kelajagi", "Будущее вашего ребёнка", "Your child's future",
@@ -59,7 +59,7 @@ COPY = {
         "Leave your details and we'll get in touch soon.",
     ),
     "modal_submit_label": ("Yuborish", "Отправить", "Send"),
-    "footer_note": ("since 2023 · Buxoro", "с 2023 · Бухара", "since 2023 · Bukhara"),
+    "footer_note": ("", "", ""),
 }
 
 

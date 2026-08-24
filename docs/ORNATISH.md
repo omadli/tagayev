@@ -1,4 +1,4 @@
-# Oʻrnatish Qoʻllanmasi — Hope School
+# Oʻrnatish Qoʻllanmasi — Tagayev Methods
 
 > Bu qoʻllanma loyihani mahalliy kompyuterda ishga tushirish uchun toʻliq qadamlarni tavsiflab beradi.
 
@@ -38,8 +38,8 @@ Oʻrnatishdan avval quyidagi dasturlar mavjudligini tekshiring:
 ## Repozitoriyani olish
 
 ```bash
-git clone https://github.com/omadli/hopeschool.git
-cd hopeschool
+git clone https://github.com/omadli/tagayev.git
+cd tagayev
 ```
 
 ---
@@ -103,7 +103,7 @@ SECRET_KEY=change-me-to-a-real-secret-key
 # Development uchun * qoldirish mumkin
 ALLOWED_HOSTS=*
 
-# Production uchun: https://hopeschool.uz
+# Production uchun: https://tagayev.uz
 CSRF_TRUSTED_ORIGINS=
 
 # Telegram — yangi arizalarni real vaqtda qabul qilish uchun (ixtiyoriy)
@@ -187,27 +187,11 @@ Brauzerda oching:
 
 ---
 
-## Demo Maʼlumotlar
+## Kontent
 
-Tez koʻrish uchun namunaviy maʼlumotlarni bazaga yuklash mumkin:
-
-```bash
-python manage.py seed_demo
-```
-
-Bu buyruq quyidagilarni yaratadi (mavjud demo maʼlumotlar avval oʻchiriladi):
-
-- Sayt sozlamalari (kontaktlar, manzil, Bogʻiturkon koordinatalari)
-- 4 ta kurs: Ingliz tili, Matematika, Kimyo, Biologiya
-- 4 ta oʻqituvchi profili
-- Statistika bloklari (300+ oʻquvchi, 10+ oʻqituvchi va h.k.)
-- "Nega biz" afzallik kartalari
-- 4 ta ota-ona sharhi
-- 3 ta yangilik/eʼlon
-- 5 ta sertifikat misoli
-- Galereya albomi (gradient namunaviy rasmlar bilan)
-
-> **Diqqat:** `seed_demo` faqat development uchun. Production bazasida ishlatmang.
+Baza boʻsh — barcha kontent (sayt sozlamalari, kurslar, oʻqituvchilar,
+sharhlar, yangiliklar, galereya, sertifikatlar) admin panel orqali
+kiritiladi: `/admin/`.
 
 ---
 

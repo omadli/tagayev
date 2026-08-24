@@ -340,8 +340,8 @@ RU = {
         "Если оставить пустым, используется логотип по умолчанию.",
     "Favicon": "Favicon",
     "Domen": "Домен",
-    "Masalan: hopeschool.uz (protokolsiz). Sitemap/canonical uchun.":
-        "Например: hopeschool.uz (без протокола). Для sitemap/canonical.",
+    "Masalan: tagayev.uz (protokolsiz). Sitemap/canonical uchun.":
+        "Например: tagayev.uz (без протокола). Для sitemap/canonical.",
     "Asosiy telefon": "Основной телефон",
     "Qo'shimcha telefon": "Дополнительный телефон",
     "Email": "Эл. почта",
@@ -614,8 +614,8 @@ EN = {
         "If left empty, the default logo is used.",
     "Favicon": "Favicon",
     "Domen": "Domain",
-    "Masalan: hopeschool.uz (protokolsiz). Sitemap/canonical uchun.":
-        "E.g. hopeschool.uz (without protocol). For sitemap/canonical.",
+    "Masalan: tagayev.uz (protokolsiz). Sitemap/canonical uchun.":
+        "E.g. tagayev.uz (without protocol). For sitemap/canonical.",
     "Asosiy telefon": "Primary phone",
     "Qo'shimcha telefon": "Secondary phone",
     "Email": "Email",
@@ -736,7 +736,7 @@ def build(lang, tmap, pmap):
     pmap = {norm(k): v for k, v in pmap.items()}
     po = polib.POFile()
     po.metadata = {
-        "Project-Id-Version": "hopeschool 1.0",
+        "Project-Id-Version": "tagayev 1.0",
         "Report-Msgid-Bugs-To": "",
         "POT-Creation-Date": "2026-06-06 00:00+0500",
         "PO-Revision-Date": "2026-06-06 00:00+0500",

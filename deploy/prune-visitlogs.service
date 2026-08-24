@@ -1,4 +1,4 @@
-# Hope School — prune old VisitLog rows (analytics retention)
+# Tagayev Methods — prune old VisitLog rows (analytics retention)
 #
 # Oneshot run, triggered by prune-visitlogs.timer. VisitLog gets one INSERT per
 # public page view, so without pruning the table (and its indexes) grow without
@@ -13,7 +13,7 @@
 #   sudo systemctl enable --now prune-visitlogs.timer
 
 [Unit]
-Description=Hope School — prune old VisitLog rows
+Description=Tagayev Methods — prune old VisitLog rows
 After=network-online.target
 Wants=network-online.target
 
@@ -21,12 +21,12 @@ Wants=network-online.target
 Type=oneshot
 User=ubuntu
 Group=www-data
-WorkingDirectory=/home/ubuntu/hopeschool
-EnvironmentFile=/home/ubuntu/hopeschool/.env
-ExecStart=/home/ubuntu/hopeschool/venv/bin/python manage.py prune_visitlogs
+WorkingDirectory=/home/ubuntu/tagayev
+EnvironmentFile=/home/ubuntu/tagayev/.env
+ExecStart=/home/ubuntu/tagayev/venv/bin/python manage.py prune_visitlogs
 
 NoNewPrivileges=true
 PrivateTmp=true
 ProtectSystem=full
 ProtectHome=read-only
-ReadWritePaths=/home/ubuntu/hopeschool
+ReadWritePaths=/home/ubuntu/tagayev

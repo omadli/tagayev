@@ -1,6 +1,6 @@
 # Admin Paneli — Kontent Boshqaruv Qoʻllanmasi
 
-> Bu qoʻllanma Hope School admin paneli orqali sayt kontentini boshqarishni tavsiflab beradi.
+> Bu qoʻllanma Tagayev Methods admin paneli orqali sayt kontentini boshqarishni tavsiflab beradi.
 > Texnik bilim talab qilinmaydi — barcha amallar forma orqali bajariladi.
 
 **Admin paneli manzili:** `http://saytmanzili/admin/`
@@ -78,7 +78,7 @@ Bu yagona forma — barcha global sayt maʼlumotlari shu yerda saqlanadi.
 | **Shior** | Qisqa tavsif (header yoki hero da ishlatilishi mumkin) |
 | **Logo** | Sayt logotipi — JPG/PNG/WebP/GIF, maks 5 MB |
 | **Favicon** | Brauzer yorliqcha ikonkasi |
-| **Domen** | `hopeschool.uz` (protokolsiz) — sitemap va canonical uchun |
+| **Domen** | `tagayev.uz` (protokolsiz) — sitemap va canonical uchun |
 
 ### Kontaktlar
 
@@ -445,8 +445,8 @@ Bu boʻlim saytni qidiruv tizimlari uchun toʻgʻri sozlash boʻyicha amaliy ko�
 
 | Maydon | Toʻldirish tartibi |
 |--------|-------------------|
-| **SEO sarlavha** (`seo_title`) | Sayt uchun umumiy sarlavha — bosh sahifada va boshqa sahifalarda alohida sarlavha kiritilmagan boʻlsa ishlatiladi. Maks 60 belgi. Misol: `Hope School — Bogʻiturkon oʻquv markazi` |
-| **SEO tavsif** (`seo_description`) | Qidiruv natijalarida tavsif matni. Maks 160 belgi. Misol: `Ingliz tili, matematika, kimyo va biologiya kurslari. Buxoro viloyati, Romitan tumani.` |
+| **SEO sarlavha** (`seo_title`) | Sayt uchun umumiy sarlavha — bosh sahifada va boshqa sahifalarda alohida sarlavha kiritilmagan boʻlsa ishlatiladi. Maks 60 belgi. Misol: `Tagayev Methods — zamonaviy oʻquv markazi` |
+| **SEO tavsif** (`seo_description`) | Qidiruv natijalarida tavsif matni. Maks 160 belgi. Misol: `Ingliz tili, matematika va boshqa fanlar boʻyicha kurslar.` |
 | **OG rasm** (`og_image`) | Saytni ijtimoiy tarmoqlarda ulashganda koʻrinadigan umumiy rasm. Tavsiya etilgan oʻlcham: **1200 × 630 px**, JPG/PNG. |
 
 **Meta sarlavha va tavsif fallback zanjiri:**
@@ -535,7 +535,7 @@ Sitemap avtomatik generatsiya qilinadi. Uni qidiruv tizimlarda roʻyxatga olish 
 
 1. Saytni tasdiqlang.
 2. Chap menyu → **"Indeksatsiya" → "Sitemap fayllari"** ga oʻting.
-3. **"Fayl qoʻshish"** → toʻliq URL ni kiriting (masalan, `https://hopeschool.uz/sitemap.xml`) → **"Qoʻshish"**.
+3. **"Fayl qoʻshish"** → toʻliq URL ni kiriting (masalan, `https://tagayev.uz/sitemap.xml`) → **"Qoʻshish"**.
 
 #### Bing Webmaster orqali yuborish
 

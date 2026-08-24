@@ -1,7 +1,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: hopeschool 1.0\n"
+"Project-Id-Version: tagayev 1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-06 00:00+0500\n"
 "PO-Revision-Date: 2026-06-06 00:00+0500\n"
@@ -462,10 +462,10 @@ msgid "Holat"
 msgstr "Статус"
 
 msgid ""
-"Hope School maxfiylik siyosati: qanday maʼlumotlar yigʻiladi va qanday "
+"Tagayev Methods maxfiylik siyosati: qanday maʼlumotlar yigʻiladi va qanday "
 "ishlatiladi."
 msgstr ""
-"Политика конфиденциальности Hope School: какие данные собираются и как "
+"Политика конфиденциальности Tagayev Methods: какие данные собираются и как "
 "используются."
 
 msgid "Hozircha rasm yo'q."
@@ -666,8 +666,8 @@ msgstr "Найдите адрес (например: Чиланзар, Ташк�
 msgid "Markaz yangiliklari"
 msgstr "Новости центра"
 
-msgid "Masalan: hopeschool.uz (protokolsiz). Sitemap/canonical uchun."
-msgstr "Например: hopeschool.uz (без протокола). Для sitemap/canonical."
+msgid "Masalan: tagayev.uz (protokolsiz). Sitemap/canonical uchun."
+msgstr "Например: tagayev.uz (без протокола). Для sitemap/canonical."
 
 msgid "Material Symbols nomi (masalan: public). Rasm boʻlmaganda ishlatiladi."
 msgstr ""

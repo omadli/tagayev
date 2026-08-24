@@ -25,7 +25,7 @@
           </button>
           <div data-langmenu class="hidden absolute right-0 mt-2 w-36 rounded-xl surface-card border bd shadow-strong p-1 z-50">
             {% for lang in alt_urls %}
-              <a href="{{ lang.url }}"{% if lang.code == LANGUAGE_CODE %} aria-current="true"{% endif %} class="block rounded-lg px-3 py-2 text-[14px] font-medium hover:bg-brand-blue-50 dark:hover:bg-white/5 {% if lang.code == LANGUAGE_CODE %}text-brand-blue-600 dark:text-brand-blue-300{% endif %}">{{ lang.name }}</a>
+              <a href="{{ lang.url }}"{% if lang.code == LANGUAGE_CODE %} aria-current="true"{% endif %} class="block rounded-lg px-3 py-2 text-[14px] font-medium hover:bg-brand-violet-50 dark:hover:bg-white/5 {% if lang.code == LANGUAGE_CODE %}text-brand-violet-600 dark:text-brand-violet-300{% endif %}">{{ lang.name }}</a>
             {% endfor %}
           </div>
         </div>
@@ -36,7 +36,7 @@
           <svg class="block dark:hidden" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A8.5 8.5 0 0 1 11.2 3 7 7 0 1 0 21 12.8z"/></svg>
         </button>
 
-        <button data-open-modal class="hidden lg:inline-flex items-center gap-2 rounded-pill bg-brand-red-600 px-5 py-2.5 text-[14px] font-semibold text-white transition hover:bg-brand-red-700 hover:-translate-y-0.5" style="box-shadow:0 10px 22px -10px rgba(192,26,32,.55)">
+        <button data-open-modal class="hidden lg:inline-flex items-center gap-2 rounded-pill bg-brand-gold-500 px-5 py-2.5 text-[14px] font-semibold text-brand-violet-900 transition hover:bg-brand-gold-600 hover:-translate-y-0.5" style="box-shadow:0 10px 22px -10px rgba(185,134,29,.5)">
           {% translate "Ariza qoldirish" %}
         </button>
 
@@ -56,7 +56,7 @@
       <a href="{% url 'home' %}#teachers" class="py-2.5 border-b bd">{% translate "Oʻqituvchilar" %}</a>
       <a href="{% url 'home' %}#results" class="py-2.5 border-b bd">{% translate "Natijalar" %}</a>
       <a href="{% url 'home' %}#contact" class="py-2.5">{% translate "Bogʻlanish" %}</a>
-      <button data-open-modal class="mt-3 rounded-pill bg-brand-red-600 px-5 py-3 font-semibold text-white">{% translate "Ariza qoldirish" %}</button>
+      <button data-open-modal class="mt-3 rounded-pill bg-brand-gold-500 px-5 py-3 font-semibold text-brand-violet-900">{% translate "Ariza qoldirish" %}</button>
     </div>
   </div>
 </header>

@@ -1,33 +1,33 @@
-# Hope School — gunicorn (Django/WSGI) service, unit name: hopeschool.service
+# Tagayev Methods — gunicorn (Django/WSGI) service, unit name: tagayev.service
 #
 # Install:
-#   sudo cp deploy/hopeschool.service /etc/systemd/system/hopeschool.service
+#   sudo cp deploy/tagayev.service /etc/systemd/system/tagayev.service
 #   sudo systemctl daemon-reload
-#   sudo systemctl enable --now hopeschool
-#   sudo systemctl status hopeschool
+#   sudo systemctl enable --now tagayev
+#   sudo systemctl status tagayev
 #
 # Adjust User/Group, WorkingDirectory and paths to match your server.
 
 [Unit]
-Description=Hope School gunicorn daemon
+Description=Tagayev Methods gunicorn daemon
 After=network.target
 
 [Service]
 # Runs as the ordinary 'ubuntu' login user (no dedicated service user). Group is
-# www-data so the nginx worker can read the unix socket in /run/hopeschool.
+# www-data so the nginx worker can read the unix socket in /run/tagayev.
 User=ubuntu
 Group=www-data
 
-WorkingDirectory=/home/ubuntu/hopeschool
-EnvironmentFile=/home/ubuntu/hopeschool/.env
+WorkingDirectory=/home/ubuntu/tagayev
+EnvironmentFile=/home/ubuntu/tagayev/.env
 
-# systemd creates /run/hopeschool owned by User:Group on start, where gunicorn
+# systemd creates /run/tagayev owned by User:Group on start, where gunicorn
 # places its unix socket; it is removed automatically on stop.
-RuntimeDirectory=hopeschool
+RuntimeDirectory=tagayev
 RuntimeDirectoryMode=0750
 
-ExecStart=/home/ubuntu/hopeschool/venv/bin/gunicorn \
-    --config /home/ubuntu/hopeschool/deploy/gunicorn.conf.py \
+ExecStart=/home/ubuntu/tagayev/venv/bin/gunicorn \
+    --config /home/ubuntu/tagayev/deploy/gunicorn.conf.py \
     config.wsgi:application
 ExecReload=/bin/kill -s HUP $MAINPID
 
@@ -45,7 +45,7 @@ ProtectHome=read-only
 # ReadWritePaths overrides ProtectHome=read-only for the project subtree only —
 # the rest of /home/ubuntu stays read-only. (gunicorn's control socket is
 # disabled in gunicorn.conf.py, so nothing tries to write to ~/.gunicorn.)
-ReadWritePaths=/home/ubuntu/hopeschool
+ReadWritePaths=/home/ubuntu/tagayev
 
 [Install]
 WantedBy=multi-user.target

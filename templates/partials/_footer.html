@@ -10,23 +10,23 @@
       <div class="md:col-span-3">
         <h3 class="font-display font-bold text-[15px] mb-3">{% translate "Sahifalar" %}</h3>
         <ul class="space-y-2 text-[14px] txt-soft">
-          <li><a href="{% url 'home' %}#about" class="hover:text-brand-blue-600">{% translate "Biz haqimizda" %}</a></li>
-          <li><a href="{% url 'home' %}#courses" class="hover:text-brand-blue-600">{% translate "Kurslar" %}</a></li>
-          <li><a href="{% url 'home' %}#news" class="hover:text-brand-blue-600">{% translate "Yangiliklar" %}</a></li>
-          <li><a href="{% url 'home' %}#teachers" class="hover:text-brand-blue-600">{% translate "Oʻqituvchilar" %}</a></li>
+          <li><a href="{% url 'home' %}#about" class="hover:text-brand-violet-600">{% translate "Biz haqimizda" %}</a></li>
+          <li><a href="{% url 'home' %}#courses" class="hover:text-brand-violet-600">{% translate "Kurslar" %}</a></li>
+          <li><a href="{% url 'home' %}#news" class="hover:text-brand-violet-600">{% translate "Yangiliklar" %}</a></li>
+          <li><a href="{% url 'home' %}#teachers" class="hover:text-brand-violet-600">{% translate "Oʻqituvchilar" %}</a></li>
         </ul>
       </div>
       <div class="md:col-span-4">
         <h3 class="font-display font-bold text-[15px] mb-3">{% translate "Bogʻlanish" %}</h3>
         <ul class="space-y-2 text-[14px] txt-soft">
           {% if site_config.address %}<li>{{ site_config.address }}</li>{% endif %}
-          {% if site_config.phone_primary %}<li><a href="tel:{{ site_config.phone_primary }}" class="hover:text-brand-blue-600">{{ site_config.phone_primary|phone_display }}</a></li>{% endif %}
-          {% if site_config.phone_secondary %}<li><a href="tel:{{ site_config.phone_secondary }}" class="hover:text-brand-blue-600">{{ site_config.phone_secondary|phone_display }}</a></li>{% endif %}
+          {% if site_config.phone_primary %}<li><a href="tel:{{ site_config.phone_primary }}" class="hover:text-brand-violet-600">{{ site_config.phone_primary|phone_display }}</a></li>{% endif %}
+          {% if site_config.phone_secondary %}<li><a href="tel:{{ site_config.phone_secondary }}" class="hover:text-brand-violet-600">{{ site_config.phone_secondary|phone_display }}</a></li>{% endif %}
         </ul>
         {% if social_links %}
         <div class="mt-4 flex flex-wrap items-center gap-2.5">
           {% for s in social_links %}
-          <a href="{{ s.url }}" target="_blank" rel="noopener" class="h-9 w-9 grid place-items-center rounded-lg border bd hover:text-brand-blue-600 hover:border-brand-blue-300 transition" aria-label="{{ s.display_label }}" title="{{ s.display_label }}">{% social_icon s.icon_key size=16 %}</a>
+          <a href="{{ s.url }}" target="_blank" rel="noopener" class="h-9 w-9 grid place-items-center rounded-lg border bd hover:text-brand-violet-600 hover:border-brand-violet-300 transition" aria-label="{{ s.display_label }}" title="{{ s.display_label }}">{% social_icon s.icon_key size=16 %}</a>
           {% endfor %}
         </div>
         {% endif %}
@@ -35,7 +35,7 @@
     <div class="mt-10 pt-6 border-t bd flex flex-col sm:flex-row items-center justify-between gap-2 text-[12.5px] txt-soft">
       <p>© {% now "Y" %} {{ site_config.site_name }}. {% translate "Barcha huquqlar himoyalangan." %}</p>
       <div class="flex items-center gap-3">
-        <a href="{% url 'privacy' %}" class="hover:text-brand-blue-600">{% translate "Maxfiylik siyosati" %}</a>
+        <a href="{% url 'privacy' %}" class="hover:text-brand-violet-600">{% translate "Maxfiylik siyosati" %}</a>
         <span>{{ site_copy.footer_note }}</span>
       </div>
     </div>

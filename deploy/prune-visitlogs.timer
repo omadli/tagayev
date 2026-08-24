@@ -1,10 +1,10 @@
-# Hope School — schedule for prune-visitlogs.service
+# Tagayev Methods — schedule for prune-visitlogs.service
 #
 # Runs weekly (and ~15 min after boot). Deleting old analytics rows is not
 # time-critical, so a weekly cadence keeps the table bounded without churn.
 
 [Unit]
-Description=Run Hope School VisitLog pruning weekly
+Description=Run Tagayev Methods VisitLog pruning weekly
 
 [Timer]
 OnBootSec=15min

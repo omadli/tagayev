@@ -328,7 +328,7 @@
         if (r.users > max) max = r.users;
       });
 
-      var blue = cssVar("--dash-blue", "#2c6bd4");
+      var blue = cssVar("--dash-blue", "#7a45e0");
       var map = window.WORLD_MAP;
       var svg = document.createElementNS(SVG_NS, "svg");
       svg.setAttribute("viewBox", "0 0 " + map.w + " " + map.h);

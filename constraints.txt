@@ -1,4 +1,4 @@
-# Hope School — pinned dependency lockfile (reproducible deploys).
+# Tagayev Methods — pinned dependency lockfile (reproducible deploys).
 # Generated with `pip freeze`. Install via:  pip install -r requirements.txt -c constraints.txt
 # Do not edit by hand; regenerate after changing requirements.txt.
 

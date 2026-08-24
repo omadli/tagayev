@@ -388,9 +388,9 @@ class SourceLabelTests(TestCase):
 
     def test_labels(self):
         from apps.analytics.dashboard import _source_label
-        hosts = {"hopeschool.uz"}
+        hosts = {"tagayev.uz"}
         self.assertEqual(_source_label("", hosts), "")
-        self.assertEqual(_source_label("https://hopeschool.uz/uz/", hosts), "")
+        self.assertEqual(_source_label("https://tagayev.uz/uz/", hosts), "")
         self.assertEqual(_source_label("https://www.google.com/search?q=x", hosts),
                          "google.com")
         self.assertEqual(_source_label("https://t.me/chan", hosts), "t.me")

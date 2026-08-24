@@ -1,5 +1,5 @@
 """
-Django settings for Hope School.
+Django settings for Tagayev Methods.
 """
 import sys
 from pathlib import Path
@@ -66,7 +66,7 @@ if not DEBUG:
     if "*" in ALLOWED_HOSTS:
         raise ImproperlyConfigured(
             "ALLOWED_HOSTS production-da '*' boʻlishi mumkin emas — aniq "
-            "domenlarni koʻrsating, masalan: hopeschool.uz,www.hopeschool.uz"
+            "domenlarni koʻrsating, masalan: tagayev.uz,www.tagayev.uz"
         )
 
     # nginx/Certbot terminates TLS and forwards the original scheme.
@@ -255,7 +255,7 @@ AXES_ONLY_ADMIN_SITE = True
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.db.DatabaseCache",
-        "LOCATION": "hopeschool_cache",
+        "LOCATION": "tagayev_cache",
         "TIMEOUT": 300,
         "OPTIONS": {"MAX_ENTRIES": 5000},
     },
@@ -264,7 +264,7 @@ CACHES = {
     # HTML; reuses the default cache table (fragment keys are namespaced).
     "fragments": {
         "BACKEND": "django.core.cache.backends.db.DatabaseCache",
-        "LOCATION": "hopeschool_cache",
+        "LOCATION": "tagayev_cache",
         "TIMEOUT": 300,
     },
     # Per-process in-memory cache for the read-mostly singletons (SiteConfig,
@@ -273,7 +273,7 @@ CACHES = {
     # (a shared DatabaseCache would just swap 3 model SELECTs for 3 cache SELECTs).
     "solo": {
         "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
-        "LOCATION": "hopeschool-solo",
+        "LOCATION": "tagayev-solo",
     },
 }
 
@@ -475,8 +475,8 @@ def _admin_favicon_href(request):
 
 
 UNFOLD = {
-    "SITE_TITLE": "Hope School",
-    "SITE_HEADER": "Hope School",
+    "SITE_TITLE": "Tagayev Methods",
+    "SITE_HEADER": "Tagayev Methods",
     "SITE_SUBHEADER": _("Boshqaruv paneli"),
     "DASHBOARD_CALLBACK": "apps.analytics.dashboard.dashboard_callback",
     "SITE_SYMBOL": "school",
@@ -499,16 +499,16 @@ UNFOLD = {
     "SHOW_BACK_BUTTON": True,
     "COLORS": {
         "primary": {
-            "50": "238 244 255",
-            "100": "217 230 255",
-            "200": "179 205 255",
-            "300": "132 172 247",
-            "400": "81 137 236",
-            "500": "44 107 212",
-            "600": "34 87 179",
-            "700": "28 70 143",
-            "800": "24 56 111",
-            "900": "18 42 82",
+            "50": "246 243 255",
+            "100": "235 227 255",
+            "200": "214 197 254",
+            "300": "183 153 249",
+            "400": "150 106 240",
+            "500": "122 69 224",
+            "600": "101 51 189",
+            "700": "81 40 152",
+            "800": "63 32 119",
+            "900": "44 22 85",
         },
     },
     "SIDEBAR": {

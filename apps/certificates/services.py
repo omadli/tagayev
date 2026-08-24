@@ -22,7 +22,7 @@ from django.core.files.base import ContentFile
 
 from apps.common.utils import is_public_ip
 
-USER_AGENT = "Mozilla/5.0 (compatible; HopeSchool-CertImporter/1.0)"
+USER_AGENT = "Mozilla/5.0 (compatible; TagayevMethods-CertImporter/1.0)"
 MAX_PDF_BYTES = 10 * 1024 * 1024
 MAX_REDIRECTS = 4
 RENDER_SCALE = 2.0          # ~144 dpi

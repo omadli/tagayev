@@ -1,4 +1,4 @@
-"""Sitemaps for Hope School (i18n alternates + x-default, https protocol).
+"""Sitemaps for Tagayev Methods (i18n alternates + x-default, https protocol).
 
 The Sites framework is not installed; Django's Sitemap falls back to the
 request host for the domain, so generated URLs match the live host.

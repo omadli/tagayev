@@ -1,7 +1,7 @@
 {% load static %}{
   "id": "/",
-  "name": "Hopeschool",
-  "short_name": "Hopeschool",
+  "name": "Tagayev Methods",
+  "short_name": "Tagayev Methods",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

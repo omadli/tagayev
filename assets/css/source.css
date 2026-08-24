@@ -9,26 +9,28 @@
 @source "../../static/js";
 
 /* ===========================================================================
-   Brand theme tokens  (generate bg-brand-blue-500, font-display, rounded-card…)
+   Brand theme tokens  (generate bg-brand-violet-500, font-display, rounded-card…)
    =========================================================================== */
 @theme {
-  --color-brand-blue-50:  #eef4ff;
-  --color-brand-blue-100: #d9e6ff;
-  --color-brand-blue-200: #b3cdff;
-  --color-brand-blue-300: #84acf7;
-  --color-brand-blue-400: #5189ec;
-  --color-brand-blue-500: #2c6bd4;
-  --color-brand-blue-600: #2257b3;
-  --color-brand-blue-700: #1c468f;
-  --color-brand-blue-800: #18386f;
-  --color-brand-blue-900: #122a52;
+  --color-brand-violet-50:  #f6f3ff;
+  --color-brand-violet-100: #ebe3ff;
+  --color-brand-violet-200: #d6c5fe;
+  --color-brand-violet-300: #b799f9;
+  --color-brand-violet-400: #966af0;
+  --color-brand-violet-500: #7a45e0;
+  --color-brand-violet-600: #6533bd;
+  --color-brand-violet-700: #512898;
+  --color-brand-violet-800: #3f2077;
+  --color-brand-violet-900: #2c1655;
 
-  --color-brand-red-50:  #fef2f2;
-  --color-brand-red-100: #fde1e2;
-  --color-brand-red-300: #f48a8f;
-  --color-brand-red-500: #da2128;
-  --color-brand-red-600: #c01a20;
-  --color-brand-red-700: #9c151b;
+  /* Gold is the ACCENT: buttons/badges only, always with a dark violet label —
+     gold on white text fails contrast at every readable shade. */
+  --color-brand-gold-50:  #fdf8ec;
+  --color-brand-gold-100: #f9eecb;
+  --color-brand-gold-300: #ecd08a;
+  --color-brand-gold-500: #dcae3c;
+  --color-brand-gold-600: #b9861d;
+  --color-brand-gold-700: #8f6712;
 
   --font-display: "Manrope", system-ui, sans-serif;
   --font-body: "Onest", system-ui, sans-serif;
@@ -41,20 +43,20 @@
    Theme surface tokens (light / dark)
    =========================================================================== */
 :root {
-  --bg: #ffffff; --bg-2: #f4f7fc; --card: #ffffff; --border: #e7ebf2;
-  --text: #14181f; --soft: #566076; --header: rgba(255,255,255,.82);
-  --shadow: 0 6px 22px -10px rgb(20 24 31 / .12);
-  --shadow-lg: 0 20px 46px -16px rgb(34 87 179 / .28);
-  --grad-from: #3d7fe6; --grad-to: #1c468f;
-  --dot: rgba(44,107,212,0.13);
+  --bg: #ffffff; --bg-2: #f8f5ff; --card: #ffffff; --border: #eae4f6;
+  --text: #17121f; --soft: #5f5670; --header: rgba(255,255,255,.82);
+  --shadow: 0 6px 22px -10px rgb(28 18 44 / .14);
+  --shadow-lg: 0 20px 46px -16px rgb(101 51 189 / .30);
+  --grad-from: #9160ee; --grad-to: #512898;
+  --dot: rgba(122,69,224,0.13);
 }
 .dark {
-  --bg: #080d1a; --bg-2: #0d1428; --card: #111a31; --border: #22304e;
-  --text: #e9eff9; --soft: #9bb0d2; --header: rgba(8,13,26,.8);
+  --bg: #0c0716; --bg-2: #130c22; --card: #1a1030; --border: #2f2249;
+  --text: #efeaf9; --soft: #b0a3c8; --header: rgba(12,7,22,.8);
   --shadow: 0 10px 30px -12px rgb(0 0 0 / .55);
   --shadow-lg: 0 24px 54px -18px rgb(0 0 0 / .65);
-  --grad-from: #3d7fe6; --grad-to: #16306b;
-  --dot: rgba(120,160,235,0.14);
+  --grad-from: #a97cff; --grad-to: #4a2390;
+  --dot: rgba(170,140,255,0.14);
 }
 
 html { scroll-behavior: smooth; }
@@ -80,11 +82,11 @@ h1, h2, h3, h4 { font-family: var(--font-display); }
 
 .grad-cap { background: linear-gradient(135deg, var(--grad-from), var(--grad-to)); }
 .text-grad {
-  background: linear-gradient(135deg, #3d7fe6, #1c468f);
+  background: linear-gradient(135deg, #9160ee, #512898);
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 .dark .text-grad {
-  background: linear-gradient(135deg, #6ba2ff, #3d7fe6);
+  background: linear-gradient(135deg, #c3a4ff, #9160ee);
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 
@@ -92,7 +94,8 @@ h1, h2, h3, h4 { font-family: var(--font-display); }
 .glow::before {
   content: ''; position: absolute; inset: -25% 5% auto auto;
   width: 480px; height: 480px;
-  background: radial-gradient(closest-side, rgba(61,127,230,.20), transparent 70%);
+  background: radial-gradient(closest-side, rgba(145,96,238,.22), transparent 70%),
+              radial-gradient(closest-side at 70% 80%, rgba(220,174,60,.14), transparent 70%);
   z-index: 0; pointer-events: none;
 }
 
@@ -101,11 +104,11 @@ h1, h2, h3, h4 { font-family: var(--font-display); }
 .duotone img { filter: saturate(.95) contrast(1.02); }
 .duotone::after {
   content: ''; position: absolute; inset: 0; mix-blend-mode: multiply;
-  background: linear-gradient(160deg, rgba(44,107,212,.26), rgba(28,70,143,.10));
+  background: linear-gradient(160deg, rgba(122,69,224,.26), rgba(81,40,152,.12));
 }
 .dark .duotone::after {
   mix-blend-mode: soft-light;
-  background: linear-gradient(160deg, rgba(61,127,230,.34), rgba(8,13,26,.30));
+  background: linear-gradient(160deg, rgba(145,96,238,.34), rgba(12,7,22,.30));
 }
 
 /* Hero staggered load — transform-only (NOT opacity:0). An LCP element that
@@ -129,7 +132,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); }
 .card-hover:hover { transform: translateY(-5px); }
 
 .nav-link { position: relative; }
-.nav-link::after { content: ''; position: absolute; left: 0; bottom: -5px; height: 2px; width: 0; background: #2c6bd4; transition: width .25s; }
+.nav-link::after { content: ''; position: absolute; left: 0; bottom: -5px; height: 2px; width: 0; background: #dcae3c; transition: width .25s; }
 .nav-link:hover::after { width: 100%; }
 
 /* Carousels */
@@ -147,7 +150,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); }
 @keyframes tickerIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 .ticker-item { animation: tickerIn .5s ease; }
 
-::selection { background: #d9e6ff; color: #122a52; }
+::selection { background: #ebe3ff; color: #2c1655; }
 
 /* Rich text (CKEditor output) */
 .rich h1, .rich h2, .rich h3 { font-family: var(--font-display); font-weight: 700; color: var(--text); line-height: 1.25; margin: 1.2em 0 .5em; }
@@ -158,8 +161,8 @@ h1, h2, h3, h4 { font-family: var(--font-display); }
 .rich ul { list-style: disc; }
 .rich ol { list-style: decimal; }
 .rich li { margin: .3em 0; }
-.rich a { color: #2c6bd4; text-decoration: underline; text-underline-offset: 2px; }
-.dark .rich a { color: #84acf7; }
+.rich a { color: #6533bd; text-decoration: underline; text-underline-offset: 2px; }
+.dark .rich a { color: #b799f9; }
 .rich strong, .rich b { font-weight: 700; color: var(--text); }
 .rich blockquote { border-left: 3px solid var(--border); padding-left: 1em; margin: .9em 0; color: var(--soft); }
 .rich img { max-width: 100%; height: auto; border-radius: .6rem; margin: .6em 0; }
@@ -175,7 +178,7 @@ input:focus-visible,
 select:focus-visible,
 textarea:focus-visible,
 summary:focus-visible {
-  outline: 2px solid var(--color-brand-blue-500);
+  outline: 2px solid var(--color-brand-violet-500);
   outline-offset: 2px;
   border-radius: 4px;
 }
@@ -185,7 +188,7 @@ summary:focus-visible {
 .dark input:focus-visible,
 .dark select:focus-visible,
 .dark textarea:focus-visible {
-  outline-color: var(--color-brand-blue-300);
+  outline-color: var(--color-brand-violet-300);
 }
 /* The skip link should never show a focus ring offset that clips it. */
 .skip-link:focus-visible { outline-offset: 3px; }

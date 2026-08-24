@@ -110,22 +110,16 @@ class PartnerModelTests(TestCase):
         self.assertEqual(list(Partner.objects.all()), [first, second])
 
 
-class PartnerSeedMigrationTests(TestCase):
-    """The seed data migration must populate the original 7 partner names."""
-
-    def test_seed_creates_seven_partners(self):
-        self.assertEqual(Partner.objects.count(), 7)
-
-    def test_seeded_partners_have_no_url(self):
-        self.assertTrue(all(p.website_url == "" for p in Partner.objects.all()))
-
-    def test_cambridge_is_seeded(self):
-        self.assertTrue(Partner.objects.filter(name="Cambridge").exists())
-
-
 @override_settings(STORAGES=_STATIC_STORAGE)
 class PartnersSectionTests(TestCase):
     """LandingView passes partners to the template; _partners.html renders them."""
+
+    def setUp(self):
+        # No seed data on this site — partners come from the admin, so the
+        # test creates the rows it asserts on.
+        Partner.objects.create(name="Cambridge", order=0)
+        Partner.objects.create(name="IELTS", order=1)
+        Partner.objects.create(name="Pearson", order=2)
 
     def test_partner_name_renders_on_landing_page(self):
         body = self.client.get("/uz/", follow=True).content.decode("utf-8", "replace")
@@ -138,8 +132,8 @@ class PartnersSectionTests(TestCase):
 
     def test_plain_name_has_no_link_when_url_blank(self):
         body = self.client.get("/uz/", follow=True).content.decode("utf-8", "replace")
-        # "Pearson" is seeded with a blank website_url — must render as plain
-        # text (a <span>), not wrapped in a link.
+        # "Pearson" has a blank website_url — must render as plain text
+        # (a <span>), not wrapped in a link.
         self.assertIn("<span>Pearson</span>", body)
 
     def test_section_hidden_when_no_partners(self):
@@ -216,7 +210,7 @@ class EditableSiteCopyTests(TestCase):
     def test_singletons_created_with_defaults(self):
         hero = HeroSection.get_solo()
         copy = SiteCopy.get_solo()
-        self.assertIn("Buxoro", hero.badge_text)
+        self.assertIn("Zamonaviy", hero.badge_text)
         self.assertIn("natijalari", copy.results_title)
         self.assertTrue(copy.contact_intro)
 
@@ -228,7 +222,7 @@ class EditableSiteCopyTests(TestCase):
 
     def test_home_renders_editable_defaults(self):
         body = self.client.get("/uz/", follow=True).content.decode("utf-8", "replace")
-        self.assertIn("Buxoro", body)
+        self.assertIn("Zamonaviy taʼlim markazi", body)
         self.assertIn("Arizangizni qoldiring", body)  # contact intro
         # old hardcoded "· Toshkent" badge must be gone
         self.assertNotIn("markazi · Toshkent", body)

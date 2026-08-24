@@ -61,7 +61,7 @@ class HeroSection(SingletonModel):
 
     badge_text = models.CharField(
         _("Yorliq matni"), max_length=160,
-        default="Zamonaviy taʼlim markazi · Buxoro",
+        default="Zamonaviy taʼlim markazi",
         help_text=_("Hero tepasidagi kichik yorliq (masalan, shahar)."),
     )
     title_prefix = models.CharField(
@@ -149,7 +149,7 @@ class SiteCopy(SingletonModel):
 
     # --- Footer ---
     footer_note = models.CharField(
-        _("Footer — pastki matn"), max_length=120, default="since 2023 · Buxoro",
+        _("Footer — pastki matn"), max_length=120, default="", blank=True,
     )
 
     class Meta:

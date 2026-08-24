@@ -1,11 +1,11 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: hopeschool-admin-uz 1.0\n"
+"Project-Id-Version: tagayev-admin-uz 1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-08 00:00+0500\n"
 "PO-Revision-Date: 2026-06-08 00:00+0500\n"
-"Last-Translator: hopeschool\n"
+"Last-Translator: tagayev\n"
 "Language-Team: uz\n"
 "Language: uz\n"
 "MIME-Version: 1.0\n"

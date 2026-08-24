@@ -1,4 +1,4 @@
-// Hope School — frontend interactions
+// Tagayev Methods — frontend interactions
 (function () {
   "use strict";
   var de = document.documentElement;
@@ -79,7 +79,7 @@
       themeBtn.setAttribute("aria-pressed", String(dark));
       try { localStorage.setItem("theme", dark ? "dark" : "light"); } catch (e) {}
       var m = document.getElementById("theme-color-meta");
-      if (m) m.setAttribute("content", dark ? "#080d1a" : "#ffffff");
+      if (m) m.setAttribute("content", dark ? "#0c0716" : "#ffffff");
     });
   }
 
@@ -182,7 +182,7 @@
         });
         tabs.forEach(function (o) {
           var active = o === t;
-          o.classList.toggle("bg-brand-blue-500", active);
+          o.classList.toggle("bg-brand-violet-500", active);
           o.classList.toggle("text-white", active);
           o.classList.toggle("txt-soft", !active);
         });

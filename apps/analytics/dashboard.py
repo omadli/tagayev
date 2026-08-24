@@ -58,9 +58,9 @@ SESSION_GAP = 30 * 60
 
 # Chart colours as literal brand hexes (blue + violet). NOT Unfold var keys:
 # Unfold's base-* vars are oklch(), which the canvas renders black.
-_BLUE = "#2c6bd4"
-_VIOLET = "#7c5cf0"
-_RED = "#da2128"
+_BLUE = "#7a45e0"
+_VIOLET = "#c08bff"
+_RED = "#dcae3c"
 
 _TOP_N = 7
 

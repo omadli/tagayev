@@ -207,11 +207,11 @@ def main():
     src = polib.pofile(DJANGO_UZ)
     out = polib.POFile()
     out.metadata = {
-        "Project-Id-Version": "hopeschool-admin-uz 1.0",
+        "Project-Id-Version": "tagayev-admin-uz 1.0",
         "Report-Msgid-Bugs-To": "",
         "POT-Creation-Date": "2026-06-08 00:00+0500",
         "PO-Revision-Date": "2026-06-08 00:00+0500",
-        "Last-Translator": "hopeschool",
+        "Last-Translator": "tagayev",
         "Language-Team": "uz",
         "Language": "uz",
         "MIME-Version": "1.0",

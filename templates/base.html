@@ -22,21 +22,21 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="apple-mobile-web-app-title" content="Hope School">
+  <meta name="apple-mobile-web-app-title" content="Tagayev Methods">
   <link rel="apple-touch-icon" href="{% static 'img/pwa/apple-touch-icon.png' %}">
 
   {# Self-hosted fonts — no render-blocking external Google Fonts request #}
   {% include "partials/_fonts.html" %}
 
   {# set theme + toolbar colour before paint to avoid flash #}
-  <script>(function(){try{var s=localStorage.getItem('theme');var d=s?s==='dark':matchMedia('(prefers-color-scheme: dark)').matches;if(d)document.documentElement.classList.add('dark');var m=document.getElementById('theme-color-meta');if(m)m.setAttribute('content',d?'#080d1a':'#ffffff');}catch(e){}})();</script>
+  <script>(function(){try{var s=localStorage.getItem('theme');var d=s?s==='dark':matchMedia('(prefers-color-scheme: dark)').matches;if(d)document.documentElement.classList.add('dark');var m=document.getElementById('theme-color-meta');if(m)m.setAttribute('content',d?'#0c0716':'#ffffff');}catch(e){}})();</script>
 
   {% tailwind_css %}
   {% include "partials/_head_analytics.html" %}
   {% block extra_head %}{% endblock %}
 </head>
 <body>
-  <a href="#main" class="skip-link sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[200] focus:rounded-pill focus:bg-brand-blue-600 focus:px-5 focus:py-2.5 focus:text-[14px] focus:font-semibold focus:text-white focus:shadow-strong">{% translate "Asosiy kontentga oʻtish" %}</a>
+  <a href="#main" class="skip-link sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[200] focus:rounded-pill focus:bg-brand-violet-600 focus:px-5 focus:py-2.5 focus:text-[14px] focus:font-semibold focus:text-white focus:shadow-strong">{% translate "Asosiy kontentga oʻtish" %}</a>
   <div id="progress" class="fixed top-0 left-0 right-0 h-[3px] z-[120] grad-cap"></div>
 
   {% include "partials/_header.html" %}

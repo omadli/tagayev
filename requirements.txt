@@ -1,4 +1,4 @@
-# Hope School — top-level dependencies (loose ranges for readability).
+# Tagayev Methods — top-level dependencies (loose ranges for readability).
 # For a reproducible deploy, install with the pinned lockfile:
 #   pip install -r requirements.txt -c constraints.txt
 # Regenerate the lock after changing this file:  pip freeze > constraints.txt

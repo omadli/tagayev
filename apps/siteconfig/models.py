@@ -74,7 +74,7 @@ class SiteConfig(SingletonModel):
     """Global, admin-managed site configuration (single row)."""
 
     # --- Branding ---
-    site_name = models.CharField(_("Sayt nomi"), max_length=120, default="Hope School")
+    site_name = models.CharField(_("Sayt nomi"), max_length=120, default="Tagayev Methods")
     tagline = models.CharField(_("Shior"), max_length=200, blank=True)
     logo = models.ImageField(_("Logo"), upload_to="branding/", blank=True,
                              validators=image_validators,
@@ -85,7 +85,7 @@ class SiteConfig(SingletonModel):
     # --- Canonical domain (SEO uchun yagona manba) ---
     site_domain = models.CharField(
         _("Domen"), max_length=120, blank=True,
-        help_text=_("Masalan: hopeschool.uz (protokolsiz). Sitemap/canonical uchun."),
+        help_text=_("Masalan: tagayev.uz (protokolsiz). Sitemap/canonical uchun."),
     )
 
     # --- Contacts ---

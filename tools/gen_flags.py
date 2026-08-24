@@ -27,7 +27,7 @@ from PIL import Image
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MAP_JS = os.path.join(BASE, "static", "js", "world_map.js")
 SPRITE = os.path.join(BASE, "static", "img", "flags.png")
-CACHE = os.path.join(tempfile.gettempdir(), "hopeschool-flags")
+CACHE = os.path.join(tempfile.gettempdir(), "tagayev-flags")
 
 # 40x30 cells: the dashboard renders them at 20x15, so this is the 2x asset.
 CELL_W, CELL_H = 40, 30

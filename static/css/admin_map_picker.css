@@ -3,7 +3,7 @@
   height: 340px;
   width: 100%;
   border-radius: 12px;
-  border: 1px solid #e7ebf2;
+  border: 1px solid #eae4f6;
   z-index: 0;
 }
 .hs-map-search { display: flex; gap: 8px; margin-bottom: 8px; }
@@ -18,12 +18,12 @@
   padding: 8px 16px;
   border: none;
   border-radius: 8px;
-  background: #2c6bd4;
+  background: #7a45e0;
   color: #fff;
   font-weight: 600;
   font-size: 14px;
   cursor: pointer;
 }
-.hs-map-search button:hover { background: #2257b3; }
+.hs-map-search button:hover { background: #6533bd; }
 .hs-map-search button:disabled { opacity: .6; cursor: wait; }
 .hs-map-hint { font-size: 12.5px; color: #6b7280; margin-top: 6px; }

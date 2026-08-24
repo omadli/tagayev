@@ -59,16 +59,16 @@ def translation_cache():
 
 # Brand/program names the MT engine must pass through unchanged. Google
 # Translate parses these as ordinary words rather than proper nouns (e.g.
-# "Hope School" -> "Школа Надежды", "Bolajon" -> "Ребёнок"), which is wrong
+# "Tagayev Methods" -> "Методы Тагаева"), which is wrong
 # every single time. Swapped for a placeholder before translation and
 # restored after. Digit-only tokens, verified empirically: punctuation/
 # brackets get mangled, and even plain uppercase-letter tokens get silently
 # transliterated into Cyrillic under some sentence contexts (e.g. inside
 # quotes) — pure digit sequences are the one form the engine never touches.
+# Add every program/group name the admin publishes here (value = a free
+# digit-only token) so the MT engine leaves it alone.
 _PROTECTED_TERMS = {
-    "Hope School": "700200301",
-    "Hope Academy": "700200302",
-    "Bolajon": "700200303",
+    "Tagayev Methods": "700200301",
 }
 
 

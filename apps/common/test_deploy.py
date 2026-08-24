@@ -21,7 +21,7 @@ _STRONG_KEY = "test-only-strong-key-" + "z" * 50
 PROD_ENV = {
     "DEBUG": "False",
     "SECRET_KEY": _STRONG_KEY,
-    "ALLOWED_HOSTS": "hopeschool.uz,www.hopeschool.uz",
+    "ALLOWED_HOSTS": "tagayev.uz,www.tagayev.uz",
 }
 
 

@@ -4,8 +4,8 @@
   <div class="relative mx-auto max-w-6xl px-4 lg:px-8 pt-10 lg:pt-16 pb-12 lg:pb-16">
     <div class="grid lg:grid-cols-12 gap-9 lg:gap-8 items-center">
       <div class="lg:col-span-6">
-        <span class="rl d1 inline-flex items-center gap-2 rounded-pill border bd surface-card px-3.5 py-1.5 text-[12.5px] sm:text-[13px] font-semibold text-brand-blue-700 dark:text-brand-blue-300">
-          <span class="h-1.5 w-1.5 rounded-full bg-brand-red-500 animate-pulse"></span>
+        <span class="rl d1 inline-flex items-center gap-2 rounded-pill border bd surface-card px-3.5 py-1.5 text-[12.5px] sm:text-[13px] font-semibold text-brand-violet-700 dark:text-brand-violet-300">
+          <span class="h-1.5 w-1.5 rounded-full bg-brand-gold-500 animate-pulse"></span>
           {{ hero_section.badge_text }}
         </span>
         <h1 class="rl d2 mt-5 font-display font-extrabold tracking-tight leading-[1.06] text-[clamp(2.1rem,5.4vw,3.7rem)]">
@@ -15,11 +15,11 @@
           {{ site_config.tagline|default:_("Tajribali oʻqituvchilar, zamonaviy metodika va natijaga yoʻnaltirilgan kichik guruhlar — bir joyda.") }}
         </p>
         <div class="rl d4 mt-7 flex flex-wrap items-center gap-3">
-          <button data-open-modal class="inline-flex items-center gap-2 rounded-pill bg-brand-red-600 px-6 py-3.5 text-[15px] font-semibold text-white transition hover:bg-brand-red-700 hover:-translate-y-0.5" style="box-shadow:0 12px 26px -10px rgba(192,26,32,.55)">
+          <button data-open-modal class="inline-flex items-center gap-2 rounded-pill bg-brand-gold-500 px-6 py-3.5 text-[15px] font-semibold text-brand-violet-900 transition hover:bg-brand-gold-600 hover:-translate-y-0.5" style="box-shadow:0 12px 26px -10px rgba(185,134,29,.5)">
             {{ hero_section.primary_cta }}
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </button>
-          <a href="#courses" class="inline-flex items-center gap-2 rounded-pill border bd surface-card px-6 py-3.5 text-[15px] font-semibold text-brand-blue-700 dark:text-brand-blue-300 transition hover:-translate-y-0.5">
+          <a href="#courses" class="inline-flex items-center gap-2 rounded-pill border bd surface-card px-6 py-3.5 text-[15px] font-semibold text-brand-violet-700 dark:text-brand-violet-300 transition hover:-translate-y-0.5">
             {{ hero_section.secondary_cta }}
           </a>
         </div>
@@ -28,7 +28,7 @@
         <dl class="rl d5 mt-9 grid grid-cols-2 sm:grid-cols-4 gap-x-5 gap-y-5 max-w-xl">
           {% for stat in stats %}
           <div>
-            <dt class="font-display text-[1.9rem] font-extrabold {% if stat.accent %}text-brand-red-500{% else %}text-brand-blue-600 dark:text-brand-blue-300{% endif %}"><span class="count" data-to="{{ stat.number }}">0</span>{{ stat.suffix }}</dt>
+            <dt class="font-display text-[1.9rem] font-extrabold {% if stat.accent %}text-brand-gold-700 dark:text-brand-gold-300{% else %}text-brand-violet-600 dark:text-brand-violet-300{% endif %}"><span class="count" data-to="{{ stat.number }}">0</span>{{ stat.suffix }}</dt>
             <dd class="text-[13px] txt-soft mt-0.5">{{ stat.label }}</dd>
           </div>
           {% endfor %}
@@ -54,14 +54,14 @@
         <div class="rl d4 mt-4 grid grid-cols-2 gap-3">
           {% if hero_section.metric1_value %}
           <div class="surface-card rounded-2xl shadow-soft border bd p-3.5 flex items-center gap-3">
-            <span class="grid place-items-center h-10 w-10 shrink-0 rounded-xl bg-brand-blue-50 dark:bg-brand-blue-500/15 text-brand-blue-600 dark:text-brand-blue-300"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10 12 5 2 10l10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></span>
+            <span class="grid place-items-center h-10 w-10 shrink-0 rounded-xl bg-brand-violet-50 dark:bg-brand-violet-500/15 text-brand-violet-600 dark:text-brand-violet-300"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10 12 5 2 10l10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></span>
             <div class="min-w-0"><div class="font-display font-bold text-[15px] leading-none">{{ hero_section.metric1_value }}</div><div class="text-[12px] txt-soft mt-1">{% translate "oʻrtacha" %}</div></div>
           </div>
           {% endif %}
           {% if hero_section.metric2_value %}
           <div class="surface-card rounded-2xl shadow-soft border bd p-3.5 flex flex-col justify-center">
             <div class="text-[12px] txt-soft leading-snug">{% translate "Bu oy" %} <b style="color:var(--text)">{{ hero_section.metric2_value }}</b> {% translate "yangi oʻquvchi" %}</div>
-            <div class="mt-2 h-1.5 rounded-full bg-brand-blue-100 dark:bg-brand-blue-500/20 overflow-hidden"><div class="h-full w-3/4 grad-cap rounded-full"></div></div>
+            <div class="mt-2 h-1.5 rounded-full bg-brand-violet-100 dark:bg-brand-violet-500/20 overflow-hidden"><div class="h-full w-3/4 grad-cap rounded-full"></div></div>
           </div>
           {% endif %}
         </div>

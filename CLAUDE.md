@@ -1,4 +1,4 @@
-# Hope School — loyiha konvensiyalari
+# Tagayev Methods — loyiha konvensiyalari
 
 ## Django template kommentariyalari
 
@@ -31,3 +31,18 @@ bo'lishi kerak** (har bir `{#` o'z qatorida `#}` bilan yopilishi shart).
 
 Django dev serverni **8000** emas, **8001**-portda ishga tushiring:
 `python manage.py runserver 8001`.
+
+## Kontent — baza boʻsh keladi
+
+Bu loyihada **demo/seed maʼlumot yoʻq** (`seed_demo` buyrugʻi olib tashlangan).
+Kurslar, oʻqituvchilar, sharhlar, yangiliklar, galereya, sertifikatlar, hamkorlar
+va sayt matnlari **faqat admin panel** orqali kiritiladi. Kontent seed qiluvchi
+migratsiya qoʻshmang — faqat `pages/0004` dagi UI matnlari (tugma yozuvlari,
+boʻlim sarlavhalari) istisno, ular interfeys chrome'i.
+
+## Brend ranglari
+
+Asosiy — **binafsha** (`brand-violet-*`), aksent — **tilla** (`brand-gold-*`);
+ikkalasi `assets/css/source.css` dagi `@theme` blokida. Tilla fonda **oq matn
+ishlatmang** (kontrast yetmaydi) — tilla tugmalarda matn `text-brand-violet-900`.
+Xato xabarlari tilla emas, Tailwind'ning `text-red-600` rangida qoladi.
