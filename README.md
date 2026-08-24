@@ -766,7 +766,16 @@ CI da `.env` yoʻq (gitignore) — sozlamalar dev standartlariga qaytadi va xavf
 - Oxirgi qadam (`systemctl restart`) CI da parolsiz ishlashi uchun serverda tor NOPASSWD sudoers qoidasi kerak (`docs/JOYLASHTIRISH.md`).
 - `concurrency` bilan ikki deploy bir vaqtda ketmasligi kafolatlanadi.
 
-> Kerakli GitHub Secrets: `DEPLOY_HOST`, `DEPLOY_USER` (=`ubuntu`), `DEPLOY_PASSWORD` (ubuntu login paroli).
+> Kerakli GitHub Secrets: `DEPLOY_HOST`, `DEPLOY_USER` (=`ubuntu`),
+> `DEPLOY_KEY` — serverga kirish uchun **alohida** ed25519 kaliti (login paroli
+> emas: parol har bir workflow ishga tushishiga butun serverni beradi). Ochiq
+> yarmi `ubuntu` ning `~/.ssh/authorized_keys` faylida, izohi
+> `github-actions-deploy@tagayev` — CI ni bekor qilish uchun shu qatorni
+> o'chirish kifoya.
+>
+> Bundan tashqari `DEPLOY_ENABLED` **variable**'i `true` bo'lishi shart. Ushbu
+> gate fork qilingan repo tasodifan boshqa saytning serveriga deploy qilib
+> yubormasligi uchun; testlar undan qat'i nazar har push'da ishlaydi.
 
 ---
 
