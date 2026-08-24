@@ -24,6 +24,14 @@ ga4_measurement_id_validator = RegexValidator(
     regex=r"^(G-[A-Z0-9]{4,20}|UA-\d{4,10}-\d{1,4})$",
     message=_("Google Analytics ID G-XXXXXXX (yoki UA-XXXX-Y) koʻrinishida boʻlishi kerak."),
 )
+# Brand colours are echoed into an inline style="" on <html>. Same reasoning as
+# the analytics IDs above: accept only a literal 6-digit hex so nothing can break
+# out of the attribute or the CSS value.
+hex_color_validator = RegexValidator(
+    regex=r"^#[0-9a-fA-F]{6}$",
+    message=_("Rang #RRGGBB koʻrinishida boʻlishi kerak (masalan: #7a45e0)."),
+)
+
 yandex_metrica_id_validator = RegexValidator(
     regex=r"^\d{4,12}$",
     message=_("Yandex Metrica ID faqat raqamlardan iborat boʻlishi kerak (masalan: 12345678)."),
@@ -81,6 +89,19 @@ class SiteConfig(SingletonModel):
                              help_text=_("Bo'sh qoldirilsa, standart logo ishlatiladi."))
     favicon = models.ImageField(_("Favicon"), upload_to="branding/", blank=True,
                                 validators=image_validators)
+
+    # --- Brand colours ---
+    # Blank = the stylesheet's built-in palette. When set, base.html hangs the
+    # value off <html> and source.css derives every shade/gradient from it via
+    # color-mix() — no Tailwind rebuild, no per-shade fields to fill in.
+    brand_primary = models.CharField(
+        _("Asosiy rang"), max_length=7, blank=True, validators=[hex_color_validator],
+        help_text=_("#RRGGBB. Havolalar, sarlavhalar, gradientlar. Boʻsh = standart binafsha."),
+    )
+    brand_accent = models.CharField(
+        _("Aksent rang"), max_length=7, blank=True, validators=[hex_color_validator],
+        help_text=_("#RRGGBB. Tugmalar va belgilar. Boʻsh = standart tilla."),
+    )
 
     # --- Canonical domain (SEO uchun yagona manba) ---
     site_domain = models.CharField(

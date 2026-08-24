@@ -32,7 +32,7 @@
           </div>
           <div class="p-5">
             <div class="flex items-center gap-2 text-[12px]">
-              {% if post.badge %}<span class="rounded-pill {% if post.badge_accent %}bg-brand-gold-50 dark:bg-brand-gold-500/15 text-brand-gold-700 dark:text-brand-gold-300{% else %}bg-brand-violet-50 dark:bg-brand-violet-500/15 text-brand-violet-700 dark:text-brand-violet-300{% endif %} font-semibold px-2.5 py-0.5">{{ post.badge }}</span>{% endif %}
+              {% if post.badge %}<span class="rounded-pill {% if post.badge_accent %}bg-brand-gold-50 dark:btn-gold/15 text-brand-gold-700 dark:text-brand-gold-300{% else %}bg-brand-violet-50 dark:bg-brand-violet-500/15 text-brand-violet-700 dark:text-brand-violet-300{% endif %} font-semibold px-2.5 py-0.5">{{ post.badge }}</span>{% endif %}
               <span class="txt-soft">{{ post.published_at|date:"d.m.Y" }}</span>
             </div>
             <h2 class="mt-3 font-display font-bold text-[18px] leading-snug">{{ post.title }}</h2>

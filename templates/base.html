@@ -1,5 +1,5 @@
 {% load static i18n tailwind_cli %}<!doctype html>
-<html lang="{{ LANGUAGE_CODE }}" class="">
+<html lang="{{ LANGUAGE_CODE }}" class=""{% if site_config.brand_primary %} data-brand-p{% endif %}{% if site_config.brand_accent %} data-brand-a{% endif %}{% if site_config.brand_primary or site_config.brand_accent %} style="{% if site_config.brand_primary %}--brand-p:{{ site_config.brand_primary }};{% endif %}{% if site_config.brand_accent %}--brand-a:{{ site_config.brand_accent }};{% endif %}"{% endif %}>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">

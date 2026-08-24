@@ -46,3 +46,12 @@ Asosiy — **binafsha** (`brand-violet-*`), aksent — **tilla** (`brand-gold-*`
 ikkalasi `assets/css/source.css` dagi `@theme` blokida. Tilla fonda **oq matn
 ishlatmang** (kontrast yetmaydi) — tilla tugmalarda matn `text-brand-violet-900`.
 Xato xabarlari tilla emas, Tailwind'ning `text-red-600` rangida qoladi.
+
+Ranglar **admin paneldan** ham o'zgaradi (Sayt sozlamalari → Brend ranglari):
+Tailwind v4 har bir utilitani `var(--color-brand-*)` ga kompilyatsiya qiladi,
+shuning uchun `base.html` `<html>` ga `--brand-p` / `--brand-a` ni yozadi va
+`source.css` dagi `:root[data-brand-p]` / `[data-brand-a]` bloklari barcha
+soyalarni `color-mix()` bilan chiqaradi. **Rebuild kerak emas.**
+Yangi brend rang qo'shsangiz — hexni to'g'ridan-to'g'ri yozmang, mavjud
+`--brand-p` / `--brand-a` / `--p-*` / `--a-*` o'zgaruvchilaridan foydalaning,
+aks holda u admin sozlamasiga bo'ysunmay qoladi.

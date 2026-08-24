@@ -297,3 +297,44 @@ class MapEmbedSanitizeTests(TestCase):
         config.google_maps_embed = '<iframe src="https://www.google.com/maps?q=1"></iframe><script>x</script>'
         self.assertIn("<iframe", config.safe_google_maps_embed)
         self.assertNotIn("<script", config.safe_google_maps_embed)
+
+
+@override_settings(STORAGES=_STATIC_STORAGE)
+class BrandColorTests(TestCase):
+    """Admin-set brand colours reach <html> as custom properties; source.css
+    derives every shade from them, so no Tailwind rebuild is involved."""
+
+    def _home(self):
+        return self.client.get("/uz/", follow=True).content.decode("utf-8", "replace")
+
+    def test_no_attribute_when_unset(self):
+        body = self._home()
+        self.assertNotIn("data-brand-p", body)
+        self.assertNotIn("--brand-p", body)
+
+    def test_primary_only_sets_its_own_hook(self):
+        config = SiteConfig.get_solo()
+        config.brand_primary = "#0f766e"
+        config.save()
+        body = self._home()
+        self.assertIn("data-brand-p", body)
+        self.assertIn("--brand-p:#0f766e;", body)
+        self.assertNotIn("data-brand-a", body)   # accent keeps the default palette
+
+    def test_both_colors_render(self):
+        config = SiteConfig.get_solo()
+        config.brand_primary = "#0f766e"
+        config.brand_accent = "#b45309"
+        config.save()
+        body = self._home()
+        self.assertIn("data-brand-p", body)
+        self.assertIn("data-brand-a", body)
+        self.assertIn("--brand-a:#b45309;", body)
+
+    def test_non_hex_is_rejected(self):
+        # The value lands inside an inline style attribute, so anything that is
+        # not a literal #RRGGBB must fail validation, not get escaped later.
+        for bad in ("red", "#fff", "#7a45e0;}", "url(javascript:alert(1))"):
+            config = SiteConfig(site_name="x", brand_primary=bad)
+            with self.assertRaises(ValidationError, msg=bad):
+                config.full_clean()

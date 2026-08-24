@@ -25,12 +25,12 @@
 
   /* Gold is the ACCENT: buttons/badges only, always with a dark violet label —
      gold on white text fails contrast at every readable shade. */
-  --color-brand-gold-50:  #fdf8ec;
-  --color-brand-gold-100: #f9eecb;
-  --color-brand-gold-300: #ecd08a;
-  --color-brand-gold-500: #dcae3c;
-  --color-brand-gold-600: #b9861d;
-  --color-brand-gold-700: #8f6712;
+  --color-brand-gold-50:  #fbf7ee;
+  --color-brand-gold-100: #f4ecd8;
+  --color-brand-gold-300: #e3cd98;
+  --color-brand-gold-500: #c9a961;
+  --color-brand-gold-600: #a98b46;
+  --color-brand-gold-700: #7f6631;
 
   --font-display: "Manrope", system-ui, sans-serif;
   --font-body: "Onest", system-ui, sans-serif;
@@ -40,23 +40,80 @@
 }
 
 /* ===========================================================================
+   Dynamic brand colours (admin panel → SiteConfig)
+   ---------------------------------------------------------------------------
+   Tailwind v4 compiles every utility to var(--color-brand-*), so overriding
+   those custom properties at runtime recolours the whole site — no rebuild.
+   base.html puts data-brand-p / data-brand-a plus inline --brand-p / --brand-a
+   on <html> only when SiteConfig actually sets a colour; the blocks below then
+   derive all 16 shades and the one-off accents from it. Left unset, these
+   blocks never match and the hand-tuned scales in @theme stand — which is also
+   the graceful fallback on a browser without color-mix().
+   =========================================================================== */
+:root {
+  --brand-p: #7a45e0;   /* primary — overridden inline by the admin */
+  --brand-a: #c9a961;   /* accent  — idem */
+  /* one-off brand tints the rules further down consume */
+  --p-lite: #9160ee; --p-deep: #512898;
+  --p-lite-d: #8f66e6; --p-deep-d: #4d2a8f; --p-soft-d: #b799f9;
+  --a-1: #e9d09a; --a-2: #d1b06c; --a-3: #b8933f; --a-4: #e0c489;
+}
+:root[data-brand-p] {
+  --color-brand-violet-50:  color-mix(in oklab, var(--brand-p)  8%, white);
+  --color-brand-violet-100: color-mix(in oklab, var(--brand-p) 16%, white);
+  --color-brand-violet-200: color-mix(in oklab, var(--brand-p) 30%, white);
+  --color-brand-violet-300: color-mix(in oklab, var(--brand-p) 50%, white);
+  --color-brand-violet-400: color-mix(in oklab, var(--brand-p) 72%, white);
+  --color-brand-violet-500: var(--brand-p);
+  --color-brand-violet-600: color-mix(in oklab, var(--brand-p) 84%, black);
+  --color-brand-violet-700: color-mix(in oklab, var(--brand-p) 68%, black);
+  --color-brand-violet-800: color-mix(in oklab, var(--brand-p) 54%, black);
+  --color-brand-violet-900: color-mix(in oklab, var(--brand-p) 39%, black);
+  --p-lite:   color-mix(in oklab, var(--brand-p) 85%, white);
+  --p-deep:   color-mix(in oklab, var(--brand-p) 68%, black);
+  --p-lite-d: color-mix(in oklab, var(--brand-p) 88%, white);
+  --p-deep-d: color-mix(in oklab, var(--brand-p) 64%, black);
+  --p-soft-d: color-mix(in oklab, var(--brand-p) 50%, white);
+  --grad-from: var(--p-lite); --grad-to: var(--p-deep);
+  --dot: color-mix(in srgb, var(--brand-p) 13%, transparent);
+  --shadow-lg: 0 20px 46px -16px color-mix(in srgb, var(--p-deep) 30%, transparent);
+}
+/* Beats both :root[data-brand-p] and .dark, so dark mode keeps its own tints. */
+:root[data-brand-p].dark {
+  --grad-from: var(--p-lite-d); --grad-to: var(--p-deep-d);
+  --dot: color-mix(in srgb, var(--p-soft-d) 12%, transparent);
+}
+:root[data-brand-a] {
+  --color-brand-gold-50:  color-mix(in oklab, var(--brand-a) 10%, white);
+  --color-brand-gold-100: color-mix(in oklab, var(--brand-a) 20%, white);
+  --color-brand-gold-300: color-mix(in oklab, var(--brand-a) 52%, white);
+  --color-brand-gold-500: var(--brand-a);
+  --color-brand-gold-600: color-mix(in oklab, var(--brand-a) 82%, black);
+  --color-brand-gold-700: color-mix(in oklab, var(--brand-a) 62%, black);
+  --a-1: color-mix(in oklab, var(--brand-a) 62%, white);
+  --a-2: color-mix(in oklab, var(--brand-a) 88%, white);
+  --a-3: color-mix(in oklab, var(--brand-a) 88%, black);
+  --a-4: color-mix(in oklab, var(--brand-a) 78%, white);
+}
+
+/* ===========================================================================
    Theme surface tokens (light / dark)
    =========================================================================== */
 :root {
   --bg: #ffffff; --bg-2: #f8f5ff; --card: #ffffff; --border: #eae4f6;
   --text: #17121f; --soft: #5f5670; --header: rgba(255,255,255,.82);
   --shadow: 0 6px 22px -10px rgb(28 18 44 / .14);
-  --shadow-lg: 0 20px 46px -16px rgb(101 51 189 / .30);
-  --grad-from: #9160ee; --grad-to: #512898;
-  --dot: rgba(122,69,224,0.13);
+  --shadow-lg: 0 20px 46px -16px color-mix(in srgb, var(--p-deep) 30%, transparent);
+  --grad-from: var(--p-lite); --grad-to: var(--p-deep);
+  --dot: color-mix(in srgb, var(--brand-p) 13%, transparent);
 }
 .dark {
-  --bg: #0c0716; --bg-2: #130c22; --card: #1a1030; --border: #2f2249;
-  --text: #efeaf9; --soft: #b0a3c8; --header: rgba(12,7,22,.8);
+  --bg: #12101a; --bg-2: #191625; --card: #1d1a2a; --border: #322c45;
+  --text: #efedf6; --soft: #a9a2ba; --header: rgba(18,16,26,.82);
   --shadow: 0 10px 30px -12px rgb(0 0 0 / .55);
   --shadow-lg: 0 24px 54px -18px rgb(0 0 0 / .65);
-  --grad-from: #a97cff; --grad-to: #4a2390;
-  --dot: rgba(170,140,255,0.14);
+  --grad-from: var(--p-lite-d); --grad-to: var(--p-deep-d);
+  --dot: color-mix(in srgb, var(--p-soft-d) 12%, transparent);
 }
 
 html { scroll-behavior: smooth; }
@@ -81,12 +138,28 @@ h1, h2, h3, h4 { font-family: var(--font-display); }
 .shadow-strong { box-shadow: var(--shadow-lg); }
 
 .grad-cap { background: linear-gradient(135deg, var(--grad-from), var(--grad-to)); }
+
+/* Metallic gold CTA. A flat gold hex reads as mustard; the off-axis highlight
+   band is what makes it read as metal. Label colour stays in the markup
+   (text-brand-violet-900) — this rule only paints the background. */
+.btn-gold {
+  background: linear-gradient(135deg, var(--a-1) 0%, var(--a-2) 34%, var(--a-3) 58%, var(--a-4) 100%);
+  box-shadow: 0 10px 24px -12px color-mix(in srgb, var(--a-3) 55%, transparent),
+              inset 0 1px 0 rgb(255 255 255 / .38);
+}
+.btn-gold:hover {
+  background: linear-gradient(135deg,
+              color-mix(in oklab, var(--a-1) 78%, white) 0%,
+              color-mix(in oklab, var(--a-2) 82%, white) 34%,
+              color-mix(in oklab, var(--a-3) 84%, white) 58%,
+              color-mix(in oklab, var(--a-4) 80%, white) 100%);
+}
 .text-grad {
-  background: linear-gradient(135deg, #9160ee, #512898);
+  background: linear-gradient(135deg, var(--p-lite), var(--p-deep));
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 .dark .text-grad {
-  background: linear-gradient(135deg, #c3a4ff, #9160ee);
+  background: linear-gradient(135deg, var(--p-soft-d), var(--p-lite));
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 
@@ -94,8 +167,8 @@ h1, h2, h3, h4 { font-family: var(--font-display); }
 .glow::before {
   content: ''; position: absolute; inset: -25% 5% auto auto;
   width: 480px; height: 480px;
-  background: radial-gradient(closest-side, rgba(145,96,238,.22), transparent 70%),
-              radial-gradient(closest-side at 70% 80%, rgba(220,174,60,.14), transparent 70%);
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--p-lite) 22%, transparent), transparent 70%),
+              radial-gradient(closest-side at 70% 80%, color-mix(in srgb, var(--brand-a) 15%, transparent), transparent 70%);
   z-index: 0; pointer-events: none;
 }
 
@@ -104,11 +177,11 @@ h1, h2, h3, h4 { font-family: var(--font-display); }
 .duotone img { filter: saturate(.95) contrast(1.02); }
 .duotone::after {
   content: ''; position: absolute; inset: 0; mix-blend-mode: multiply;
-  background: linear-gradient(160deg, rgba(122,69,224,.26), rgba(81,40,152,.12));
+  background: linear-gradient(160deg, color-mix(in srgb, var(--brand-p) 26%, transparent), color-mix(in srgb, var(--p-deep) 12%, transparent));
 }
 .dark .duotone::after {
   mix-blend-mode: soft-light;
-  background: linear-gradient(160deg, rgba(145,96,238,.34), rgba(12,7,22,.30));
+  background: linear-gradient(160deg, color-mix(in srgb, var(--p-lite) 34%, transparent), rgba(18,16,26,.30));
 }
 
 /* Hero staggered load — transform-only (NOT opacity:0). An LCP element that
@@ -132,7 +205,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); }
 .card-hover:hover { transform: translateY(-5px); }
 
 .nav-link { position: relative; }
-.nav-link::after { content: ''; position: absolute; left: 0; bottom: -5px; height: 2px; width: 0; background: #dcae3c; transition: width .25s; }
+.nav-link::after { content: ''; position: absolute; left: 0; bottom: -5px; height: 2px; width: 0; background: var(--brand-a); transition: width .25s; }
 .nav-link:hover::after { width: 100%; }
 
 /* Carousels */
@@ -150,7 +223,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); }
 @keyframes tickerIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 .ticker-item { animation: tickerIn .5s ease; }
 
-::selection { background: #ebe3ff; color: #2c1655; }
+::selection { background: color-mix(in oklab, var(--brand-p) 16%, white); color: color-mix(in oklab, var(--brand-p) 39%, black); }
 
 /* Rich text (CKEditor output) */
 .rich h1, .rich h2, .rich h3 { font-family: var(--font-display); font-weight: 700; color: var(--text); line-height: 1.25; margin: 1.2em 0 .5em; }
@@ -161,8 +234,8 @@ h1, h2, h3, h4 { font-family: var(--font-display); }
 .rich ul { list-style: disc; }
 .rich ol { list-style: decimal; }
 .rich li { margin: .3em 0; }
-.rich a { color: #6533bd; text-decoration: underline; text-underline-offset: 2px; }
-.dark .rich a { color: #b799f9; }
+.rich a { color: color-mix(in oklab, var(--brand-p) 84%, black); text-decoration: underline; text-underline-offset: 2px; }
+.dark .rich a { color: var(--p-soft-d); }
 .rich strong, .rich b { font-weight: 700; color: var(--text); }
 .rich blockquote { border-left: 3px solid var(--border); padding-left: 1em; margin: .9em 0; color: var(--soft); }
 .rich img { max-width: 100%; height: auto; border-radius: .6rem; margin: .6em 0; }

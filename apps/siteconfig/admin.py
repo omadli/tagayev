@@ -59,6 +59,11 @@ class SiteConfigForm(forms.ModelForm):
         fields = "__all__"
         widgets = {
             "latitude": LeafletLocationWidget(),
+            # Text, not <input type="color">: a colour input always posts a value
+            # (#000000), which would make "blank = use the default palette"
+            # impossible to express.
+            "brand_primary": forms.TextInput(attrs={"placeholder": "#7a45e0", "size": 9}),
+            "brand_accent": forms.TextInput(attrs={"placeholder": "#c9a961", "size": 9}),
         }
 
     def clean(self):
@@ -91,6 +96,11 @@ class SiteConfigAdmin(AutoTranslateAdminMixin, ModelAdmin, TabbedTranslationAdmi
     fieldsets = (
         (_("Brending"), {
             "fields": ("site_name", "tagline", "logo", "favicon", "site_domain"),
+        }),
+        (_("Brend ranglari"), {
+            "fields": ("brand_primary", "brand_accent"),
+            "description": _("Boʻsh qoldirilsa standart palitra ishlatiladi. Rang tanlansa "
+                             "butun sayt (soyalar, gradientlar, tugmalar) unga moslashadi."),
         }),
         (_("Kontaktlar"), {
             "fields": ("phone_primary", "phone_secondary", "email", "address", "working_hours"),
