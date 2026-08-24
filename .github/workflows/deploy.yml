@@ -65,9 +65,12 @@ jobs:
 
   # ---------------------------------------------------------------------------
   # CD — deploy to the server, but ONLY on push to main and ONLY if tests pass.
-  # Connects as the ordinary 'ubuntu' user over SSH (password auth) and runs the
-  # redeploy steps in-place under /home/ubuntu/tagayev. `systemctl restart`
-  # needs a NOPASSWD sudoers rule for that one command — see docs/JOYLASHTIRISH.md.
+  # Connects as the ordinary 'ubuntu' user over SSH with a DEDICATED ed25519
+  # deploy key (secrets.DEPLOY_KEY) — not the login password, which would hand
+  # every workflow run the whole box. Revoke by deleting that key's line from
+  # ~/.ssh/authorized_keys (comment: github-actions-deploy@tagayev).
+  # Runs the redeploy steps in-place under /home/ubuntu/tagayev; the final
+  # `sudo systemctl restart` relies on passwordless sudo for the ubuntu user.
   # ---------------------------------------------------------------------------
   deploy:
     name: Deploy
@@ -75,7 +78,7 @@ jobs:
     # DEPLOY_ENABLED gates CD: this repo is a fork, and its inherited
     # secrets could still point at another site's box. Tests run on every
     # push regardless; set the repo variable DEPLOY_ENABLED=true only once
-    # DEPLOY_HOST/USER/PASSWORD and /home/ubuntu/tagayev are this site's.
+    # DEPLOY_HOST/USER/KEY and /home/ubuntu/tagayev are this site's.
     if: github.event_name == 'push' && github.ref == 'refs/heads/main' && vars.DEPLOY_ENABLED == 'true'
     runs-on: ubuntu-latest
     concurrency:
@@ -86,8 +89,8 @@ jobs:
         uses: appleboy/ssh-action@v1
         with:
           host: ${{ secrets.DEPLOY_HOST }}
-          username: ${{ secrets.DEPLOY_USER }}       # ubuntu
-          password: ${{ secrets.DEPLOY_PASSWORD }}   # ubuntu's login password
+          username: ${{ secrets.DEPLOY_USER }}   # ubuntu
+          key: ${{ secrets.DEPLOY_KEY }}         # dedicated ed25519 deploy key
           port: 22
           command_timeout: 15m
           script: |
