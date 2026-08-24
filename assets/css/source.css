@@ -77,11 +77,25 @@
   --grad-from: var(--p-lite); --grad-to: var(--p-deep);
   --dot: color-mix(in srgb, var(--brand-p) 13%, transparent);
   --shadow-lg: 0 20px 46px -16px color-mix(in srgb, var(--p-deep) 30%, transparent);
+  /* Surfaces carry a trace of the brand so one knob moves the whole mood, not
+     just the accents. Mixed into a neutral (not pure white/black) — mixing a
+     saturated hue straight into black gives a dyed, muddy ink. */
+  --bg-2:   color-mix(in oklab, var(--brand-p)  5%, #ffffff);
+  --border: color-mix(in oklab, var(--brand-p) 11%, #f2f2f4);
+  --text:   color-mix(in oklab, var(--brand-p) 10%, #14141a);
+  --soft:   color-mix(in oklab, var(--brand-p) 14%, #5c5c66);
 }
 /* Beats both :root[data-brand-p] and .dark, so dark mode keeps its own tints. */
 :root[data-brand-p].dark {
   --grad-from: var(--p-lite-d); --grad-to: var(--p-deep-d);
   --dot: color-mix(in srgb, var(--p-soft-d) 12%, transparent);
+  --bg:     color-mix(in oklab, var(--brand-p)  9%, #101014);
+  --bg-2:   color-mix(in oklab, var(--brand-p) 10%, #17171d);
+  --card:   color-mix(in oklab, var(--brand-p) 11%, #1a1a21);
+  --border: color-mix(in oklab, var(--brand-p) 14%, #2c2c36);
+  --text:   color-mix(in oklab, var(--brand-p)  6%, #eeeef4);
+  --soft:   color-mix(in oklab, var(--brand-p) 12%, #a3a3b0);
+  --header: color-mix(in srgb, var(--bg) 85%, transparent);
 }
 :root[data-brand-a] {
   --color-brand-gold-50:  color-mix(in oklab, var(--brand-a) 10%, white);

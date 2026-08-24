@@ -21,7 +21,7 @@
   directly, so it does NOT inherit this override; the switcher therefore appears
   on all content pages (changelists / change forms), not the dashboard index.
 {% endcomment %}
-{% load i18n static %}
+{% load i18n static brand %}
 
 {% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
 
@@ -33,6 +33,7 @@
     <meta name="apple-mobile-web-app-title" content="Admin">
     <link rel="apple-touch-icon" href="{% static 'img/pwa/apple-touch-icon.png' %}">
     <script src="{% static 'js/admin_pwa.js' %}" defer></script>
+    {% admin_brand_style %}
 {% endblock %}
 
 {% block branding %}

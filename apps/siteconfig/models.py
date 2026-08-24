@@ -78,6 +78,21 @@ def sanitize_map_embed(raw):
     return mark_safe(cleaned)
 
 
+# Shade ladder shared with assets/css/source.css: the same percentages, so the
+# admin chrome and the public site land on the same colours. sRGB mixing (not
+# oklab like the CSS) is close enough for admin chrome and needs no dependency.
+_SHADES = {50: 8, 100: 16, 200: 30, 300: 50, 400: 72, 500: 100,
+           600: -84, 700: -68, 800: -54, 900: -39}
+
+
+def shade(hex_color, pct):
+    """Mix `hex_color` with white (pct > 0) or black (pct < 0) and return the
+    "R G B" triplet Unfold expects. pct is the share of the brand colour."""
+    r, g, b = (int(hex_color[i:i + 2], 16) for i in (1, 3, 5))
+    ratio, target = (pct / 100, 255) if pct > 0 else (-pct / 100, 0)
+    return " ".join(str(round(c * ratio + target * (1 - ratio))) for c in (r, g, b))
+
+
 class SiteConfig(SingletonModel):
     """Global, admin-managed site configuration (single row)."""
 
@@ -150,6 +165,14 @@ class SiteConfig(SingletonModel):
         _("Telegram bot tokeni"), max_length=128, blank=True,
         help_text=_("@BotFather bergan token. Boʻsh qoldirilsa, serverdagi .env qiymati ishlatiladi."),
     )
+
+    @property
+    def brand_palette(self):
+        """Unfold/dashboard colour overrides for the admin, or {} when the
+        admin has not picked a brand colour (then the built-in palette stands)."""
+        if not self.brand_primary:
+            return {}
+        return {w: shade(self.brand_primary, pct) for w, pct in _SHADES.items()}
 
     class Meta:
         verbose_name = _("Sayt sozlamalari")

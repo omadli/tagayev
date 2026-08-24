@@ -79,7 +79,11 @@
       themeBtn.setAttribute("aria-pressed", String(dark));
       try { localStorage.setItem("theme", dark ? "dark" : "light"); } catch (e) {}
       var m = document.getElementById("theme-color-meta");
-      if (m) m.setAttribute("content", dark ? "#0c0716" : "#ffffff");
+      if (m) {
+        // read the resolved surface so the browser bar follows the admin palette
+        var bg = getComputedStyle(document.documentElement).getPropertyValue("--bg").trim();
+        m.setAttribute("content", bg || (dark ? "#12101a" : "#ffffff"));
+      }
     });
   }
 

@@ -338,3 +338,37 @@ class BrandColorTests(TestCase):
             config = SiteConfig(site_name="x", brand_primary=bad)
             with self.assertRaises(ValidationError, msg=bad):
                 config.full_clean()
+
+
+@override_settings(STORAGES=_STATIC_STORAGE)
+class AdminBrandPaletteTests(TestCase):
+    """The admin chrome follows the same palette as the public site."""
+
+    def setUp(self):
+        User = get_user_model()
+        self.client.force_login(User.objects.create_superuser(
+            username="admin_brand", password="x", email="b@t.uz"))
+
+    def test_shade_ladder_endpoints(self):
+        from apps.siteconfig.models import shade
+        self.assertEqual(shade("#7a45e0", 100), "122 69 224")   # 500 = the colour itself
+        self.assertEqual(shade("#000000", 8), "235 235 235")    # 8% of black into white
+        self.assertEqual(shade("#ffffff", -50), "128 128 128")  # 50% of white into black
+
+    def test_palette_empty_until_a_colour_is_set(self):
+        self.assertEqual(SiteConfig.get_solo().brand_palette, {})
+
+    def test_admin_emits_override_only_when_set(self):
+        url = reverse("admin:siteconfig_siteconfig_changelist")
+        # Unfold always prints its own :root palette, so the marker for OUR
+        # override is the html:root selector, not the variable name.
+        self.assertNotIn("html:root", self.client.get(url, follow=True)
+                         .content.decode("utf-8", "replace"))
+        config = SiteConfig.get_solo()
+        config.brand_primary = "#0f766e"
+        config.save()
+        body = self.client.get(url, follow=True).content.decode("utf-8", "replace")
+        # html:root, not :root — Unfold prints its own :root block later in the
+        # document, so the override has to win on specificity.
+        self.assertIn("html:root", body)
+        self.assertIn("--color-primary-500: 15 118 110;", body)

@@ -10,7 +10,7 @@ from unfold.admin import ModelAdmin
 from apps.common.admin import AutoTranslateAdminMixin
 
 from .models import SiteConfig, SocialLink, TelegramRecipient
-from .widgets import LeafletLocationWidget
+from .widgets import BrandColorWidget, LeafletLocationWidget
 
 
 @admin.register(SocialLink)
@@ -59,11 +59,8 @@ class SiteConfigForm(forms.ModelForm):
         fields = "__all__"
         widgets = {
             "latitude": LeafletLocationWidget(),
-            # Text, not <input type="color">: a colour input always posts a value
-            # (#000000), which would make "blank = use the default palette"
-            # impossible to express.
-            "brand_primary": forms.TextInput(attrs={"placeholder": "#7a45e0", "size": 9}),
-            "brand_accent": forms.TextInput(attrs={"placeholder": "#c9a961", "size": 9}),
+            "brand_primary": BrandColorWidget(fallback="#7a45e0", presets=True),
+            "brand_accent": BrandColorWidget(fallback="#c9a961"),
         }
 
     def clean(self):

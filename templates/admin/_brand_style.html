@@ -1,0 +1,10 @@
+{% if palette %}<style>
+  /* Unfold prints its own palette into a plain `:root` block at the top of
+     <body>, i.e. AFTER this one. `html:root` outranks it on specificity, so
+     source order stops mattering. The same trick covers the dashboard chart
+     var, which static/css/admin_dashboard.css also declares on `:root`. */
+  html:root {
+  {% for weight, rgb in palette.items %}  --color-primary-{{ weight }}: {{ rgb }};
+  {% endfor %}  --dash-blue: {{ primary }};
+  }
+</style>{% endif %}

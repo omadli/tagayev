@@ -55,3 +55,16 @@ soyalarni `color-mix()` bilan chiqaradi. **Rebuild kerak emas.**
 Yangi brend rang qo'shsangiz — hexni to'g'ridan-to'g'ri yozmang, mavjud
 `--brand-p` / `--brand-a` / `--p-*` / `--a-*` o'zgaruvchilaridan foydalaning,
 aks holda u admin sozlamasiga bo'ysunmay qoladi.
+
+Admin paneli ham shu palitraga ergashadi: `{% admin_brand_style %}` tegi
+(`apps/common/templatetags/brand.py`) Unfold'ning `--color-primary-*` larini
+`html:root` bilan qayta yozadi — `:root` emas, chunki Unfold o'zinikini
+`<body>` boshida, ya'ni **keyinroq** chiqaradi.
+
+`site_context` kontekst protsessori admin so'rovlarida bo'sh qaytadi, shuning
+uchun admin shablonlarida `site_config` **yo'q** — singletonni teg orqali
+oling.
+
+Palitraga ergashmaydigan yagona joy — `templates/500.html`: u baza/ilova
+ishlamay qolganda render bo'ladi, shuning uchun SiteConfig'ga murojaat
+qilmasligi shart. Logotip va PWA ikonkalari ham rasm (admin yuklaydi).

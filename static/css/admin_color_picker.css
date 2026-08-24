@@ -1,0 +1,45 @@
+/* Brand colour field (BrandColorWidget). Unfold ships no project Tailwind
+   build, so these are plain rules; colours come from Unfold's own CSS vars so
+   the control follows the admin theme (and the brand colour once one is set). */
+.hs-color { display: flex; align-items: center; gap: 8px; }
+
+.hs-color-swatch {
+  width: 42px; height: 34px; padding: 0; flex: none; cursor: pointer;
+  border: 1px solid rgb(var(--color-base-200)); border-radius: 8px;
+  background: transparent;
+}
+.dark .hs-color-swatch { border-color: rgb(var(--color-base-700)); }
+.hs-color-swatch::-webkit-color-swatch-wrapper { padding: 3px; }
+.hs-color-swatch::-webkit-color-swatch { border: none; border-radius: 5px; }
+.hs-color-swatch::-moz-color-swatch { border: none; border-radius: 5px; }
+
+.hs-color input[type="text"] { width: 11ch; font-family: ui-monospace, monospace; }
+
+.hs-color-reset {
+  cursor: pointer; white-space: nowrap;
+  padding: 7px 12px; border-radius: 8px; font-size: 12.5px; font-weight: 600;
+  border: 1px solid rgb(var(--color-base-200)); color: rgb(var(--color-base-600));
+  background: transparent;
+}
+.hs-color-reset:hover { background: rgb(var(--color-base-100)); }
+.dark .hs-color-reset { border-color: rgb(var(--color-base-700)); color: rgb(var(--color-base-300)); }
+.dark .hs-color-reset:hover { background: rgb(var(--color-base-800)); }
+
+/* Ready-made palettes — two swatches + a label, click applies both fields. */
+.hs-presets { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.hs-preset {
+  display: inline-flex; align-items: center; gap: 6px; cursor: pointer;
+  padding: 5px 10px 5px 6px; border-radius: 999px;
+  border: 1px solid rgb(var(--color-base-200)); background: transparent;
+}
+.hs-preset:hover { background: rgb(var(--color-base-100)); }
+.hs-preset span { width: 15px; height: 15px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgb(0 0 0 / .12); }
+.hs-preset span + span { margin-left: -9px; }
+.hs-preset em { font-style: normal; font-size: 12px; font-weight: 600; color: rgb(var(--color-base-600)); }
+.dark .hs-preset { border-color: rgb(var(--color-base-700)); }
+.dark .hs-preset:hover { background: rgb(var(--color-base-800)); }
+.dark .hs-preset em { color: rgb(var(--color-base-300)); }
+
+/* Live shade ladder — the 10 steps the site will actually generate. */
+.hs-shades { display: flex; margin-top: 8px; border-radius: 6px; overflow: hidden; max-width: 320px; }
+.hs-shades span { flex: 1; height: 18px; }

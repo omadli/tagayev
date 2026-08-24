@@ -56,11 +56,25 @@ _ALIASES = {"today": "24h", "week": "7d", "month": "30d", "year": "12mo"}
 # the usual web-analytics convention, and what bounce rate / duration count.
 SESSION_GAP = 30 * 60
 
-# Chart colours as literal brand hexes (blue + violet). NOT Unfold var keys:
-# Unfold's base-* vars are oklch(), which the canvas renders black.
-_BLUE = "#7a45e0"
-_VIOLET = "#c08bff"
-_RED = "#dcae3c"
+# Chart colours as literal hexes. NOT Unfold var keys: Unfold's base-* vars are
+# oklch(), which the canvas renders black. They follow the admin's brand colour
+# when one is set (see SiteConfig.brand_palette).
+_BLUE_DEFAULT = "#7a45e0"
+_VIOLET_DEFAULT = "#c08bff"
+_ACCENT_DEFAULT = "#c9a961"
+
+
+def _chart_colors():
+    """(series-1, series-2, leads) hexes for this render."""
+    from apps.siteconfig.models import SiteConfig, shade
+
+    config = SiteConfig.get_solo()   # solo LocMem cache: no query
+    primary = config.brand_primary
+    accent = config.brand_accent or _ACCENT_DEFAULT
+    if not primary:
+        return _BLUE_DEFAULT, _VIOLET_DEFAULT, accent
+    lighter = "#%02x%02x%02x" % tuple(int(c) for c in shade(primary, 50).split())
+    return primary, lighter, accent
 
 _TOP_N = 7
 
@@ -432,12 +446,14 @@ def build_dashboard_data(request, period, start=None, end=None):
             _bucket_plan(window_start - span, window_start), self_hosts,
         )
 
+        color_series, color_series_2, color_leads = _chart_colors()
+
         data["stats"] = [
             {"key": "users", "title": _("Foydalanuvchilar"), "icon": "person",
-             "value": now["users"], "color": _BLUE, "series": True,
+             "value": now["users"], "color": color_series, "series": True,
              "trend": _trend(now["users"], before["users"])},
             {"key": "views", "title": _("Sahifa koʻrishlari"), "icon": "visibility",
-             "value": now["views"], "color": _VIOLET, "series": True,
+             "value": now["views"], "color": color_series_2, "series": True,
              "trend": _trend(now["views"], before["views"])},
             {"key": "bounce", "title": _("Chiqib ketish darajasi"), "icon": "call_missed_outgoing",
              "value": f"{now['bounce']}%", "color": "", "series": False,
@@ -451,9 +467,9 @@ def build_dashboard_data(request, period, start=None, end=None):
             "labels": labels,
             "datasets": [
                 {"key": "users", "label": str(_("Foydalanuvchilar")),
-                 "data": now["user_series"], "color": _BLUE},
+                 "data": now["user_series"], "color": color_series},
                 {"key": "views", "label": str(_("Sahifa koʻrishlari")),
-                 "data": now["view_series"], "color": _VIOLET},
+                 "data": now["view_series"], "color": color_series_2},
             ],
         })
 
@@ -491,7 +507,7 @@ def build_dashboard_data(request, period, start=None, end=None):
         data["leads_chart"] = json.dumps({
             "labels": labels,
             "datasets": [{"key": "leads", "label": str(_("Arizalar")),
-                          "data": _count_series(leads, plan), "color": _RED}],
+                          "data": _count_series(leads, plan), "color": color_leads}],
         })
         status_labels = dict(Lead.Status.choices)
         data["leads_by_status"] = {
