@@ -36,7 +36,7 @@
       <p>© {% now "Y" %} {{ site_config.site_name }}. {% translate "Barcha huquqlar himoyalangan." %}</p>
       <div class="flex items-center gap-3">
         <a href="{% url 'privacy' %}" class="hover:text-brand-violet-600">{% translate "Maxfiylik siyosati" %}</a>
-        <span>{{ site_copy.footer_note }}</span>
+        {% if site_copy.footer_note %}<span>{{ site_copy.footer_note }}</span>{% endif %}
       </div>
     </div>
   </div>

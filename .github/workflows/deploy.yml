@@ -72,7 +72,11 @@ jobs:
   deploy:
     name: Deploy
     needs: test
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    # DEPLOY_ENABLED gates CD: this repo is a fork, and its inherited
+    # secrets could still point at another site's box. Tests run on every
+    # push regardless; set the repo variable DEPLOY_ENABLED=true only once
+    # DEPLOY_HOST/USER/PASSWORD and /home/ubuntu/tagayev are this site's.
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && vars.DEPLOY_ENABLED == 'true'
     runs-on: ubuntu-latest
     concurrency:
       group: deploy-production
