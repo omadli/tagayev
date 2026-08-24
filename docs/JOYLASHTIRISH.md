@@ -270,10 +270,10 @@ Himoya **uch qatlamda** qurilgan:
 
 | Zona | Cheklov | Qayerda |
 |------|---------|---------|
-| `hs_general` | 20 soʻrov/sek (burst 40) | barcha sahifalar |
-| `hs_form` | 10 soʻrov/daq (burst 5) | `POST /ariza/` |
-| `hs_login` | 20 soʻrov/daq (burst 10) | `/admin/login/` |
-| `hs_conn` | 20 parallel ulanish/IP | barchasi (slow-loris) |
+| `tg_general` | 20 soʻrov/sek (burst 40) | barcha sahifalar |
+| `tg_form` | 10 soʻrov/daq (burst 5) | `POST /ariza/` |
+| `tg_login` | 20 soʻrov/daq (burst 10) | `/admin/login/` |
+| `tg_conn` | 20 parallel ulanish/IP | barchasi (slow-loris) |
 
 ### 3-qatlam — fail2ban (firewall darajasida IP bloklash)
 nginx loglarini kuzatib, cheklovni qayta-qayta buzgan IP larni **iptables**
