@@ -286,7 +286,7 @@ tagayev/
 │   ├── gunicorn.conf.py     #   gunicorn sozlamalari (unix socket, workers)
 │   ├── tagayev.uz.conf   #   nginx sayt konfiguratsiyasi
 │   ├── nginx-ratelimit.conf #   nginx rate-limit / connection zonalari
-│   ├── resolve-geoip.*      #   Geo-IP systemd service + timer (30 daq.)
+│   ├── tagayev-resolve-geoip.*      #   Geo-IP systemd service + timer (30 daq.)
 │   └── fail2ban/            #   fail2ban filter + jail (429 spam IP bloklash)
 │
 ├── static/                  # Statik fayllar (JS, rasm, ikonkalar)
@@ -444,7 +444,7 @@ python manage.py prune_visitlogs --days 30
 python manage.py resolve_geoip
 ```
 
-> Productionda `resolve_geoip` 30 daqiqada bir systemd timer orqali avtomatik ishlaydi (`deploy/resolve-geoip.timer`); `prune_visitlogs` ni esa haftalik crontab/timer bilan rejalashtiring.
+> Productionda `resolve_geoip` 30 daqiqada bir systemd timer orqali avtomatik ishlaydi (`deploy/tagayev-resolve-geoip.timer`); `prune_visitlogs` ni esa haftalik crontab/timer bilan rejalashtiring.
 
 ---
 

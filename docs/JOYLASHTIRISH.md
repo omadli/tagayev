@@ -246,11 +246,11 @@ Dashboarddagi "Davlatlar boʻyicha tashriflar" paneli `resolve_geoip` buyruq
 ishlamaguncha boʻsh boʻladi. Uni 30 daqiqada bir avtomatik ishlatamiz:
 
 ```bash
-sudo cp /home/ubuntu/tagayev/deploy/resolve-geoip.service /etc/systemd/system/
-sudo cp /home/ubuntu/tagayev/deploy/resolve-geoip.timer   /etc/systemd/system/
+sudo cp /home/ubuntu/tagayev/deploy/tagayev-resolve-geoip.service /etc/systemd/system/
+sudo cp /home/ubuntu/tagayev/deploy/tagayev-resolve-geoip.timer   /etc/systemd/system/
 sudo systemctl daemon-reload
-sudo systemctl enable --now resolve-geoip.timer
-sudo systemctl list-timers resolve-geoip.timer
+sudo systemctl enable --now tagayev-resolve-geoip.timer
+sudo systemctl list-timers tagayev-resolve-geoip.timer
 ```
 
 ---
