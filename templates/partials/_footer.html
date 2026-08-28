@@ -11,7 +11,7 @@
         <h3 class="font-display font-bold text-[15px] mb-3">{% translate "Sahifalar" %}</h3>
         <ul class="space-y-2 text-[14px] txt-soft">
           <li><a href="{% url 'home' %}#about" class="hover:text-brand-violet-600">{% translate "Biz haqimizda" %}</a></li>
-          <li><a href="{% url 'home' %}#courses" class="hover:text-brand-violet-600">{% translate "Kurslar" %}</a></li>
+          <li><a href="{% url 'courses:list' %}" class="hover:text-brand-violet-600">{% translate "Kurslar" %}</a></li>
           <li><a href="{% url 'home' %}#news" class="hover:text-brand-violet-600">{% translate "Yangiliklar" %}</a></li>
           <li><a href="{% url 'home' %}#teachers" class="hover:text-brand-violet-600">{% translate "Oʻqituvchilar" %}</a></li>
         </ul>

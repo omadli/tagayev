@@ -468,6 +468,9 @@ msgstr ""
 "Политика конфиденциальности Tagayev Methods: какие данные собираются и как "
 "используются."
 
+msgid "Hozircha kurs yo'q."
+msgstr "Пока нет курсов."
+
 msgid "Hozircha rasm yo'q."
 msgstr "Пока нет изображений."
 

@@ -8,7 +8,7 @@
 
       <nav class="hidden lg:flex items-center gap-7 text-[15px] font-medium txt-soft">
         <a href="{% url 'home' %}#about" class="nav-link">{% translate "Biz haqimizda" %}</a>
-        <a href="{% url 'home' %}#courses" class="nav-link">{% translate "Kurslar" %}</a>
+        <a href="{% url 'courses:list' %}" class="nav-link">{% translate "Kurslar" %}</a>
         <a href="{% url 'home' %}#news" class="nav-link">{% translate "Yangiliklar" %}</a>
         <a href="{% url 'home' %}#teachers" class="nav-link">{% translate "Oʻqituvchilar" %}</a>
         <a href="{% url 'home' %}#results" class="nav-link">{% translate "Natijalar" %}</a>
@@ -51,7 +51,7 @@
   <div id="drawer" class="lg:hidden hidden border-t bd surface-card">
     <div class="px-4 py-3 flex flex-col text-[15px] font-medium">
       <a href="{% url 'home' %}#about" class="py-2.5 border-b bd">{% translate "Biz haqimizda" %}</a>
-      <a href="{% url 'home' %}#courses" class="py-2.5 border-b bd">{% translate "Kurslar" %}</a>
+      <a href="{% url 'courses:list' %}" class="py-2.5 border-b bd">{% translate "Kurslar" %}</a>
       <a href="{% url 'home' %}#news" class="py-2.5 border-b bd">{% translate "Yangiliklar" %}</a>
       <a href="{% url 'home' %}#teachers" class="py-2.5 border-b bd">{% translate "Oʻqituvchilar" %}</a>
       <a href="{% url 'home' %}#results" class="py-2.5 border-b bd">{% translate "Natijalar" %}</a>

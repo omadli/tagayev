@@ -171,6 +171,7 @@ RU = {
     "Barchasi": "Все",
     "Boshqa yangiliklar": "Другие новости",
     "Hozircha yangilik yo'q.": "Пока нет новостей.",
+    "Hozircha kurs yo'q.": "Пока нет курсов.",
     # --- Gallery ---
     "Galereya": "Галерея",
     "Oʻquv jarayonimizdan lavhalar": "Моменты учебного процесса",
@@ -465,6 +466,7 @@ EN = {
     "Barchasi": "View all",
     "Boshqa yangiliklar": "Other news",
     "Hozircha yangilik yo'q.": "No news yet.",
+    "Hozircha kurs yo'q.": "No courses yet.",
     "Galereya": "Gallery",
     "Oʻquv jarayonimizdan lavhalar": "Moments from our learning process",
     "Hozircha rasm yo'q.": "No images yet.",

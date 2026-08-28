@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load i18n ui %}
+{% block title %}{% translate "Bizning kurslarimiz" %} — {{ site_config.site_name }}{% endblock %}
+
+{% block extra_head %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "{% translate 'Bosh sahifa' %}", "item": "{{ request.scheme }}://{{ request.get_host }}/"},
+    {"@type": "ListItem", "position": 2, "name": "{% translate 'Kurslar' %}", "item": "{{ request.build_absolute_uri }}"}
+  ]
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<section class="py-12 lg:py-16 bg-base">
+  <div class="mx-auto max-w-6xl px-4 lg:px-8">
+    <div class="mb-10">
+      <span class="text-[12.5px] font-bold uppercase tracking-[0.18em] text-brand-violet-600 dark:text-brand-violet-300">{% translate "Yoʻnalishlar" %}</span>
+      <h1 class="mt-2 font-display font-extrabold tracking-tight text-[clamp(1.9rem,4vw,2.8rem)]">{% translate "Bizning kurslarimiz" %}</h1>
+    </div>
+    {% if courses %}
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+      {% for course in courses %}
+      <article class="card-hover group flex flex-col rounded-card surface-card border bd shadow-soft overflow-hidden">
+        <div class="flex-1 flex flex-col p-5">
+          <div class="flex items-center justify-between">
+            <span class="grid place-items-center h-11 w-11 rounded-xl grad-cap text-white">{% icon course.icon size=22 %}</span>
+            {% if course.category %}<span class="rounded-pill {% if course.is_featured %}bg-brand-gold-50 dark:btn-gold/15 text-brand-gold-700 dark:text-brand-gold-300{% else %}bg-brand-violet-50 dark:bg-brand-violet-500/15 text-brand-violet-700 dark:text-brand-violet-300{% endif %} text-[12px] font-semibold px-3 py-1">{{ course.category.name }}</span>{% endif %}
+          </div>
+          <h2 class="mt-4 font-display font-bold text-[18px]">{{ course.name }}</h2>
+          {% if course.short_description %}<p class="mt-1.5 text-[14px] leading-relaxed txt-soft">{{ course.short_description }}</p>{% endif %}
+          <div class="mt-auto pt-4 flex items-center gap-4 text-[13px] txt-soft">
+            {% if course.duration_text %}<span class="inline-flex items-center gap-1.5">{% icon "clock" size=15 %} {{ course.duration_text }}</span>{% endif %}
+            {% if course.group_size %}<span class="inline-flex items-center gap-1.5">{% icon "group" size=15 %} {{ course.group_size }}</span>{% endif %}
+          </div>
+        </div>
+        <div class="flex items-center justify-between border-t bd px-5 py-3.5">
+          <div>
+            {% if course.is_price_visible and course.price %}
+              <span class="font-display font-extrabold text-[17px]">{{ course.price|som }}</span><span class="text-[12.5px] txt-soft"> {{ course.price_note|default:"soʻm" }}</span>
+            {% else %}
+              <span class="text-[13px] txt-soft">{% translate "Narx — murojaat orqali" %}</span>
+            {% endif %}
+          </div>
+          <a href="{{ course.get_absolute_url }}" class="inline-flex items-center gap-1 text-[14px] font-semibold text-brand-violet-700 dark:text-brand-violet-300 group-hover:gap-2 transition-all">{% translate "Batafsil" %} →</a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+    {% if is_paginated %}
+    <div class="mt-10 flex justify-center gap-2 text-[14px] font-semibold">
+      {% if page_obj.has_previous %}<a href="?page={{ page_obj.previous_page_number }}" class="rounded-pill border bd surface-card px-4 py-2">←</a>{% endif %}
+      <span class="rounded-pill bg-brand-violet-600 text-white px-4 py-2">{{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span>
+      {% if page_obj.has_next %}<a href="?page={{ page_obj.next_page_number }}" class="rounded-pill border bd surface-card px-4 py-2">→</a>{% endif %}
+    </div>
+    {% endif %}
+    {% else %}
+    <p class="txt-soft">{% translate "Hozircha kurs yo'q." %}</p>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}
