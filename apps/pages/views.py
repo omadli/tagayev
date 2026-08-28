@@ -20,7 +20,8 @@ class LandingView(TemplateView):
         ctx["stats"] = StatItem.objects.filter(is_active=True)
         ctx["why_us"] = WhyUsItem.objects.filter(is_active=True)
         ctx["partners"] = Partner.objects.filter(is_active=True)
-        ctx["courses"] = Course.objects.filter(is_active=True).select_related("category")[:9]
+        # Karusel bo'lgani uchun kesish yo'q — barcha faol kurslar ko'rinadi.
+        ctx["courses"] = Course.objects.filter(is_active=True).select_related("category")
         ctx["news"] = NewsPost.objects.filter(is_published=True)[:8]
         ctx["teachers"] = Teacher.objects.filter(is_active=True)[:12]
         ctx["certificates"] = Certificate.objects.filter(is_active=True)[:12]

@@ -2,23 +2,28 @@
 {% if courses %}
 <section id="courses" class="py-12 lg:py-16 bg-alt">
   <div class="mx-auto max-w-6xl px-4 lg:px-8">
-    <div class="sr flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-9">
+    <div class="sr flex items-end justify-between gap-4 mb-9">
       <div>
         <span class="text-[12.5px] font-bold uppercase tracking-[0.18em] text-brand-violet-600 dark:text-brand-violet-300">{% translate "Yoʻnalishlar" %}</span>
         <h2 class="mt-2 font-display font-extrabold tracking-tight text-[clamp(1.7rem,3.4vw,2.5rem)] leading-tight">{% translate "Bizning kurslarimiz" %}</h2>
       </div>
+      <div class="hidden sm:flex items-center gap-2">
+        <a href="{% url 'courses:list' %}" class="text-[14px] font-semibold text-brand-violet-700 dark:text-brand-violet-300 mr-1">{% translate "Barchasi" %} →</a>
+        <button data-prev="courses" aria-label="{% translate 'Oldingi' %}" class="h-10 w-10 grid place-items-center rounded-pill border bd surface-card hover:text-brand-violet-600"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <button data-next="courses" aria-label="{% translate 'Keyingi' %}" class="h-10 w-10 grid place-items-center rounded-pill border bd surface-card hover:text-brand-violet-600"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+      </div>
     </div>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+    <div data-carousel="courses" data-interval="5000" class="flex gap-4 sm:gap-5 overflow-x-auto snap-x snap-mandatory no-scrollbar pb-1">
       {% for course in courses %}
-      <article class="sr card-hover group rounded-card surface-card border bd shadow-soft overflow-hidden">
-        <div class="p-5">
+      <article class="snap-start shrink-0 w-[86%] sm:w-[47%] lg:w-[31.5%] card-hover group flex flex-col rounded-card surface-card border bd shadow-soft overflow-hidden">
+        <div class="flex-1 flex flex-col p-5">
           <div class="flex items-center justify-between">
             <span class="grid place-items-center h-11 w-11 rounded-xl grad-cap text-white">{% icon course.icon size=22 %}</span>
             {% if course.category %}<span class="rounded-pill {% if course.is_featured %}bg-brand-gold-50 dark:btn-gold/15 text-brand-gold-700 dark:text-brand-gold-300{% else %}bg-brand-violet-50 dark:bg-brand-violet-500/15 text-brand-violet-700 dark:text-brand-violet-300{% endif %} text-[12px] font-semibold px-3 py-1">{{ course.category.name }}</span>{% endif %}
           </div>
           <h3 class="mt-4 font-display font-bold text-[18px]">{{ course.name }}</h3>
-          {% if course.short_description %}<p class="mt-1.5 text-[14px] leading-relaxed txt-soft">{{ course.short_description }}</p>{% endif %}
-          <div class="mt-4 flex items-center gap-4 text-[13px] txt-soft">
+          {% if course.short_description %}<p class="mt-1.5 text-[14px] leading-relaxed txt-soft line-clamp-3">{{ course.short_description }}</p>{% endif %}
+          <div class="mt-auto pt-4 flex items-center gap-4 text-[13px] txt-soft">
             {% if course.duration_text %}<span class="inline-flex items-center gap-1.5">{% icon "clock" size=15 %} {{ course.duration_text }}</span>{% endif %}
             {% if course.group_size %}<span class="inline-flex items-center gap-1.5">{% icon "group" size=15 %} {{ course.group_size }}</span>{% endif %}
           </div>
